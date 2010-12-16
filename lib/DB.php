@@ -34,7 +34,7 @@ class DB {
 	 * Restituisce l'unica istanza della connessione
 	 * @return DB
 	 */
-	public function getInstance() {
+	public static function getInstance() {
 		if (!self::$instance instanceof self) {
 			try {
 				self::$instance = new self;
@@ -94,11 +94,6 @@ class DB {
 }
 
 /*
-
-
-
-
-
  * public function disconnect (not a must, but always nice to have)
 
  * public function escape (simple use of mysql_escape_string, but ensures we’re connected to mysql first)

@@ -111,7 +111,7 @@ class Sorvegliante {
 	public function save() {
 		//@todo validare i dati 
 		$db = DB::getInstance();
-		$queryStr = "INSERT INTO " . self::$nomeTabella . "(nome, cognome, password) VALUES ('$this->nome', '$this->cognome', SHA1('$this->password'))";
+		$queryStr = "INSERT INTO " . self::$nomeTabella . "(nome, cognome, password) VALUES ('$this->nome', '$this->cognome', SHA1('$this->password'))"; //@todo ricordarsi di modificare SHA1
 		try {
 			$db->query($queryStr);
 		} catch (DatabaseErrorException $exc) {

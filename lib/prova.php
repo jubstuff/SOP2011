@@ -7,29 +7,25 @@
 	</head>
 	<body>
 		<?php
-
-		$conn = new mysqli('localhost', 'sop2011_admin', 'z0m1x9n2', 'sop2011');
-		if ( mysqli_connect_errno ( ) ) {
-			die('impossibile connettersi');
-		}
+		require_once 'Sorvegliante.php';
+		require_once 'DB.php';
+		$db = DB::getInstance();
 		$queryStr = "SELECT * FROM Sorveglianti";
-		$result = $conn->query($queryStr);
-		if ( $result === FALSE ) {
-			//query fallita
-			echo "<p>Stavo eseguendo la query " . $queryStr . '</p>';
-			die("Query Fallita");
-		} else {
-			//query ok
-			echo '<ul>';
-			while ($row = $result->fetch_assoc()) {
-				echo '<li>' . $row['matricola'] . '-' . $row['nome'] . '-' .
-				$row['cognome'] . '</li>';
-			}
-			echo '</ul>';
+		$result = $db->query($queryStr);
+		//query ok
+		echo '<ul>';
+		while ($row = $result->fetch_assoc()) {
+			echo '<li>' . $row['matricola'] . '-' . $row['nome'] . '-' .
+			$row['cognome'] . '</li>';
 		}
-
-		$conn->close();
+		echo '</ul>';
+		
+		
+		$s = Sorvegliante::find_by_id(2);
+		echo $s;
+		
 		?>
+
 
 	</body>
 </html>
