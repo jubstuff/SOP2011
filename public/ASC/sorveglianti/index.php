@@ -1,4 +1,5 @@
 <?php
+require_once 'config.php';
 require_once 'Sorvegliante.php';
 $pageTitle = "Amministra Sorveglianti";
 $tuttiISorveglianti = Sorvegliante::findAll();
@@ -25,7 +26,7 @@ $tuttiISorveglianti = Sorvegliante::findAll();
 					<td><?php echo $s->getNome(); ?></td>
 					<td><?php echo $s->getCognome(); ?></td>
 					<td><a href="modifica.php?id=<?php echo $id; ?>">Modifica</a></td>
-					<td><a href="elimina.php?id=<?php echo $id; ?>">Elimina</a></td>
+					<td><a href="<?php echo $actionUrl; ?>/sorvegliante/elimina.php?id=<?php echo $id; ?>">Elimina</a></td>
 				</tr>
 			<?php endforeach; ?>
 		</table> 

@@ -70,7 +70,6 @@ class Sorvegliante {
 	public static function find_by_id($id) {
 		$db = DB::getInstance();
 		$nomeChiave = 'matricola';
-		$id = $db->escape($id);
 		$queryStr = "SELECT * FROM " . self::$nomeTabella . " WHERE $nomeChiave=$id";
 
 		try {
@@ -116,6 +115,28 @@ class Sorvegliante {
 			$db->query($queryStr);
 		} catch (DatabaseErrorException $exc) {
 			echo $exc->getTraceAsString();
+		}
+	}
+
+	public function update() {
+		$db = DB::getInstance();
+		$queryStr = "UPDATE ".self::$nomeTabella." SET nome='".$this->nome."', cognome='".$this->cognome."' WHERE matricola=".$this->matricola;
+		try {
+			$db->query($queryStr);
+		} catch (DatabaseErrorException $exc) {
+			echo $queryStr;
+			//echo $exc->getTraceAsString();
+		}
+	}
+
+	public function delete(){
+		$db = DB::getInstance();
+		$queryStr = "DELETE FROM " . self::$nomeTabella . " WHERE matricola=".  $this->matricola;
+		try {
+			$db->query($queryStr);
+		} catch (DatabaseErrorException $exc) {
+			echo $queryStr;
+			//echo $exc->getTraceAsString();
 		}
 	}
 

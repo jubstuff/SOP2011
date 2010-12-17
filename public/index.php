@@ -1,4 +1,4 @@
-<?php require_once 'Sorvegliante.php'; ?>
+<?php require_once 'config.php'; ?>
 <!doctype html>
 <html>
    <head>
@@ -13,10 +13,8 @@
          <li><a href="">[Sorvegliante] Visualizzare i miei turni e percorsi</a></li>
       </ul>
 		<?php 
-		$s = Sorvegliante::findAll();
-		foreach ($s as $value) {
-			echo $value;
-}
+		echo $baseUrl;
+
 		?>
    </body>
 </html>

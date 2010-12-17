@@ -1,4 +1,6 @@
-<?php $pageTitle = "Aggiungi Sorvegliante"; ?>
+<?php
+require_once 'config.php';
+$pageTitle = "Aggiungi Sorvegliante"; ?>
 <!doctype html>
 <html>
    <head>
@@ -6,7 +8,7 @@
    </head>
    <body>
 		<h1>Aggiungi nuovo sorvegliante</h1>
-		<form action="aggiungi.php" method="post">
+		<form action="<?php echo $actionUrl; ?>/sorvegliante/aggiungi.php" method="post">
 			<p>
 				<label for="nome">Nome</label>
 				<input id="nome" name="nome" type="text" />
