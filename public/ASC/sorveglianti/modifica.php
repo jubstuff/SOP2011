@@ -3,8 +3,21 @@ require_once 'config.php';
 require_once 'Sorvegliante.php';
 
 $pageTitle = "Modifica Sorvegliante";
-$id = $_GET['id'];
-$s = Sorvegliante::find_by_id($id);
+
+$validator = new Validator($_GET);
+if($validator->isNumeric('id')) {
+	$s = Sorvegliante::find_by_id($clean['id']);
+}
+//$clean = array();
+//$errors = array();
+//if (isset($_GET['id']) && strlen($_GET['id']) && is_numeric($_GET['id'])) {
+//	$clean['id'] = $_GET['id'];	
+//} else {
+//	/* errore */
+//	die("Non dovresti essere qui!");
+//}
+
+
 ?>
 <!doctype html>
 <html>
@@ -12,7 +25,7 @@ $s = Sorvegliante::find_by_id($id);
       <title><?php echo $pageTitle; ?></title>
    </head>
    <body>
-		<h1>Aggiungi nuovo sorvegliante</h1>
+		<h1>Modifica sorvegliante</h1>
 		<form action="<?php echo ACTION_URL; ?>/sorvegliante/modifica.php" method="post">
 			<p>
 				<label for="nome">Nome</label>
