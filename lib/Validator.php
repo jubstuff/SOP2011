@@ -1,14 +1,26 @@
 <?php
 
 /**
- * Description of Validator
+ * Validator
+ * Presa una richiesta HTTP in ingresso permette di validarla
  *
  * @author just
  */
 class Validator {
-
+	/**
+	 *
+	 * @var array La richiesta ($_POST o $_GET) iniziale
+	 */
 	private $rawRequest;
+	/**
+	 *
+	 * @var array La richiesta con i campi validati
+	 */
 	private $cleanRequest;
+	/**
+	 *
+	 * @var array Elenco di errori da mostrare
+	 */
 	private $errors;
 
 	public function __construct(array $request) {
@@ -34,7 +46,7 @@ class Validator {
 	}
 
 	public function isAlnum($key) {
-		if (ctype_alnum($this->rawRequest[$key])) {
+		if ( isset ($this->rawRequest[$key]) && ctype_alnum($this->rawRequest[$key]) ) {
 			$this->addClean($key, $this->rawRequest[$key]);
 			return TRUE;
 		} else {
@@ -44,7 +56,7 @@ class Validator {
 	}
 
 	public function isNumeric($key) {
-		if (is_numeric($this->rawRequest[$key])) {
+		if ( isset ($this->rawRequest[$key]) && is_numeric($this->rawRequest[$key]) ) {
 			$this->addClean($key, $this->rawRequest[$key]);
 			return TRUE;
 		} else {
@@ -53,12 +65,14 @@ class Validator {
 		}
 	}
 
-	public function isEmpty($var) {
-		$var = trim($var);
-		if ($var == '') {
+	public function isNotEmpty($key) {
+		if ( isset($this->rawRequest[$key]) && strlen(trim($this->rawRequest[$key])) ) {
+			$this->addClean($key, $this->rawRequest[$key]);
 			return TRUE;
+		} else {
+			$this->addError("Il campo $key è obbligatorio");
+			return FALSE;
 		}
-		return FALSE;
 	}
 
 	/**
@@ -70,7 +84,7 @@ class Validator {
 		$output = array();
 		$all_parameters = func_get_args();
 		foreach ($all_parameters as $key => $value) {
-			if (!is_numeric($value)) {
+			if ( !is_numeric($value) ) {
 				$output[$key] = $value;
 			}
 		}
