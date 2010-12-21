@@ -10,6 +10,7 @@
       <ul>
          <li><a href="sorveglianti/">Amministrare sorveglianti</a></li>
          <li><a href="">Amministrare Clienti</a></li>
+		 <li><a href="puntiDiControllo/">Amministra punti di controllo</a></li>
       </ul>
    </body>
 </html>

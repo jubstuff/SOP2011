@@ -4,10 +4,13 @@ require_once 'Sorvegliante.php';
 
 $pageTitle = "Modifica Sorvegliante";
 
-$validator = new Validator($_GET);
+/*$validator = new Validator($_GET);
 if($validator->isNumeric('id')) {
 	$s = Sorvegliante::find_by_id($clean['id']);
-}
+}*/
+
+$s = Sorvegliante::find_by_id($_GET['id']);
+
 //$clean = array();
 //$errors = array();
 //if (isset($_GET['id']) && strlen($_GET['id']) && is_numeric($_GET['id'])) {
