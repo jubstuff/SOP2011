@@ -8,6 +8,7 @@
 			Uno <input type="text" name="uno" id="uno" />
 			Due <input type="text" name="due" id="due"/>
 			Tre <select name="tre" id="tre">
+				<option value="" selected="selected">[Seleziona un'opzione]</option>
 				<option value="a">a</option>
 				<option value="b">b</option>
 				<option value="c">c</option>

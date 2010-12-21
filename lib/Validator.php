@@ -45,32 +45,41 @@ class Validator {
 		return $this->cleanRequest;
 	}
 
-	public function isAlnum($key) {
+	public function isAlnum($key, $msg='') {
 		if ( isset ($this->rawRequest[$key]) && ctype_alnum($this->rawRequest[$key]) ) {
 			$this->addClean($key, $this->rawRequest[$key]);
 			return TRUE;
 		} else {
-			$this->addError("Il campo $key deve essere alfanumerico");
+			if(!strlen($msg)) {
+				$msg = "Il campo $key deve essere alfanumerico";
+			}
+			$this->addError($msg);
 			return FALSE;
 		}
 	}
 
-	public function isNumeric($key) {
+	public function isNumeric($key, $msg='') {
 		if ( isset ($this->rawRequest[$key]) && is_numeric($this->rawRequest[$key]) ) {
 			$this->addClean($key, $this->rawRequest[$key]);
 			return TRUE;
 		} else {
-			$this->addError("Il campo $key deve essere numerico");
+			if(!strlen($msg)) {
+				$msg = "Il campo $key deve essere numerico";
+			}
+			$this->addError($msg);
 			return FALSE;
 		}
 	}
 
-	public function isNotEmpty($key) {
+	public function isNotEmpty($key, $msg='') {
 		if ( isset($this->rawRequest[$key]) && strlen(trim($this->rawRequest[$key])) ) {
 			$this->addClean($key, $this->rawRequest[$key]);
 			return TRUE;
 		} else {
-			$this->addError("Il campo $key è obbligatorio");
+			if(!strlen($msg)) {
+				$msg = "Il campo $key è obbligatorio";
+			}
+			$this->addError($msg);
 			return FALSE;
 		}
 	}

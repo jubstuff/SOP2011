@@ -1,6 +1,6 @@
 CREATE DATABASE sop2011;
 
-GRANT CREATE, DROP, SELECT, UPDATE, INSERT, DELETE
+GRANT CREATE, DROP, SELECT, UPDATE, INSERT, DELETE, ALTER
 	ON sop2011.*
 	TO 'sop2011_admin'@'localhost'
 	IDENTIFIED BY 'z0m1x9n2';
@@ -33,12 +33,10 @@ CREATE TABLE Sorveglianti
 	cognome VARCHAR(50) NOT NULL,
 	password VARCHAR(40) NOT NULL,
 	codiceSquadra INTEGER DEFAULT 1,
-	
 	CONSTRAINT Sorveglianti_fk1
 	  FOREIGN KEY (codiceSquadra) REFERENCES Squadre(codiceSquadra)
-	--possibile inserimento dei dati anagrafici
 ) ENGINE = InnoDB;
-
+--possibile inserimento dei dati anagrafici
 CREATE TABLE Clienti
 (
 	codiceCliente INTEGER AUTO_INCREMENT PRIMARY KEY,
@@ -88,7 +86,7 @@ CREATE TABLE Turni
 ) ENGINE = InnoDB;
 
 ALTER TABLE Percorsi ADD CONSTRAINT Percorsi_fk3
-	  FOREIGN KEY (codiceTurno) REFERENCES Turni(codiceTurno)
+	  FOREIGN KEY (codiceTurno) REFERENCES Turni(codiceTurno);
 
 
 CREATE TABLE TURNO_PERCORSO
