@@ -1,5 +1,8 @@
 <?php
+session_start();
+
 require_once 'Validator.php';
+require_once 'Redirect.php';
 
 $v = new Validator($_POST);
 $v->isNotEmpty('uno', "DEVI AGGIUNGERE IL CAMPO UNO!!");
@@ -10,10 +13,12 @@ $v->isNumeric('due');
 $e = $v->getError();
 
 if ( empty($e) ) {
-	echo 'Tutto ok';
+	$r = new Redirect('success.php');
+	$r->doRedirect();
 } else {
-	foreach ($e as $error) {
-		echo '<p style="color:#F00">'.$error.'</p>';
-	}
+	$_SESSION['clean'] = $v->getClean();
+	$_SESSION['errors'] = $e;
+	$r = new Redirect('form.php');
+	$r->doRedirect();
 }
 ?>
