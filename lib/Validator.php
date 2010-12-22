@@ -84,6 +84,18 @@ class Validator {
 		}
 	}
 
+	public function isEqual($key, $value, $msg='') {
+		if(isset($this->rawRequest[$key]) && ($this->rawRequest[$key] == $value)) {
+			$this->addClean($key, $this->rawRequest[$key]);
+			return TRUE;
+		} else {
+			if(!strlen($msg)) {
+				$msg = "Il campo $key deve essere uguale a $value";
+			}
+			$this->addError($msg);
+			return FALSE;
+		}
+	}
 	/**
 	 * 
 	 * 
