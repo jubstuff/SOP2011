@@ -14,12 +14,14 @@ class Sorvegliante {
 	private $nome;
 	private $cognome;
 	private $password;
+	private $codiceSquadra;
 
-	public function __construct($nome, $cognome, $matricola='', $password='') {
+	public function __construct($nome, $cognome, $matricola='', $password='', $squadra=1) {
 		$this->setNome($nome);
 		$this->setCognome($cognome);
 		$this->setPassword($password);
 		$this->setMatricola($matricola);
+		$this->setCodiceSquadra($squadra);
 	}
 
 	/*
@@ -41,7 +43,10 @@ class Sorvegliante {
 	public function getPassword() {
 		return $this->password;
 	}
-
+	
+	public function getCodiceSquadra() {
+		return $this->codiceSquadra;
+	}
 	/*
 	 * SETTER
 	 */
@@ -61,20 +66,25 @@ class Sorvegliante {
 	public function setPassword($password) {
 		$this->password = sha1($password);
 	}
+	
+	public function setCodiceSquadra($squadra) {
+		$this->codiceSquadra = $squadra;
+	}
 
 	/**
 	 *
 	 * @param type $id
-	 * @return Sorvegliante 
+	 * @return Sorvegliante L'oggetto sorvegliante relativo alla matricola data 
+	 * in ingresso
 	 */
 	public static function find_by_id($id) {
 		$db = DB::getInstance();
 		$nomeChiave = 'matricola';
-		$queryStr = "SELECT * FROM " . self::$nomeTabella . " WHERE $nomeChiave=$id";
+		$queryStr = "SELECT nome,cognome,matricola,password,codiceSquadra FROM " . self::$nomeTabella . " WHERE $nomeChiave=$id";
 
 		try {
 			$out = $db->fetchFirst($queryStr);
-			$s = new Sorvegliante($out['nome'], $out['cognome'], $out['matricola'], $out['password']);
+			$s = new Sorvegliante($out['nome'], $out['cognome'], $out['matricola'], $out['password'],$out['codiceSquadra']);
 			return $s;
 		} catch (DatabaseErrorException $exc) {
 			echo '<p>', $queryStr, '</p>';
@@ -84,7 +94,7 @@ class Sorvegliante {
 
 	/**
 	 *
-	 * @return Sorvegliante 
+	 * @return array array contenente matricola,nome e cognome di tutti i sorveglianti 
 	 */
 	public static function findAll() {
 		$db = DB::getInstance();
@@ -110,7 +120,7 @@ class Sorvegliante {
 	public function save() {
 		//@todo validare i dati 
 		$db = DB::getInstance();
-		$queryStr = "INSERT INTO " . self::$nomeTabella . "(nome, cognome, password) VALUES ('$this->nome', '$this->cognome', SHA1('$this->password'))"; //@todo ricordarsi di modificare SHA1
+		$queryStr = "INSERT INTO " . self::$nomeTabella . "(nome, cognome, password, codiceSquadra) VALUES ('$this->nome', '$this->cognome', SHA1('$this->password'), $this->codiceSquadra)"; //@todo ricordarsi di modificare SHA1
 		try {
 			$db->query($queryStr);
 		} catch (DatabaseErrorException $exc) {
