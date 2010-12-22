@@ -2,16 +2,20 @@
 require_once 'config.php';
 require_once 'PuntoDiControllo.php';
 
-$codicePC = '';
-$indirizzo = '';
-$latitudine = '';
-$longitudine = '';
-$idTag = '';
-$codiceCliente = '';
+//@todo validare la richiesta POST
+//echo "azioni/puntodicontrollo/modifica.php";
+//var_dump($_POST);
 
-extract($_POST, EXTR_IF_EXISTS);
+$id = isset($_POST['id']) ? $_POST['id'] : '';
+$indirizzo = isset($_POST['indirizzo']) ? $_POST['indirizzo'] : '';
+$latitudine = isset($_POST['lat']) ? $_POST['lat'] : '';
+$longitudine = isset($_POST['lng']) ? $_POST['lng'] : '';
+$idTag = isset($_POST['idTag']) ? $_POST['idTag'] : '';
+$codiceCliente = isset($_POST['codiceCliente']) ? $_POST['codiceCliente'] : '';
 
-$p = PuntoDiControllo::find_by_id($codicePC);
+
+
+$p = PuntoDiControllo::find_by_id($id);
 $p->setIndirizzo($indirizzo);
 $p->setLatitudine($latitudine);
 $p->setLongitudine($longitudine);

@@ -32,11 +32,11 @@ $s = PuntoDiControllo::find_by_id($_GET['id']);
 				<input id="indirizzo" name="indirizzo" type="text" value="<?php echo $s->getIndirizzo(); ?> " size="50" />
 			</p>
 			<p>
-				<label for="latitudine">Latitudine</label>
+				<label for="lat">Latitudine</label>
 				<input id="lat" name="lat" type="text" value="<?php echo $s->getLatitudine(); ?>" />
 			</p>
 			<p>
-				<label for="longitudine">Longitudine</label>
+				<label for="lng">Longitudine</label>
 				<input id="lng" name="lng" type="text" value="<?php echo $s->getLongitudine(); ?>" />
 			</p>
 			<p>

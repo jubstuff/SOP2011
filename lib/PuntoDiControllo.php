@@ -110,12 +110,11 @@ class PuntoDiControllo {
 		$db = DB::getInstance();
 		 $queryStr = "SELECT codicePC, indirizzo, latitudine, longitudine, idTag, C.nomeCliente ";
 		 $queryStr .= "FROM PuntiDiControllo P JOIN Clienti C ON(P.codiceCliente = C.codiceCliente)";
-		  //$queryStr = "SELECT codicePC, indirizzo, latitudine, longitudine, idTag, codiceCliente FROM PuntiDiControllo";
+		 //$queryStr = "SELECT codicePC, indirizzo, latitudine, longitudine, idTag, codiceCliente FROM PuntiDiControllo";
 		try {
 			$result = $db->query($queryStr);
 			$out = array();
 			while ($row = $result->fetch_assoc()) {
-				var_dump($row);
 				$out[] = new PuntoDiControllo($row['codicePC'], $row['indirizzo'], $row['latitudine'], $row['longitudine'], $row['idTag'], $row['nomeCliente']);
 			}
 			return $out;
@@ -145,12 +144,13 @@ class PuntoDiControllo {
 	public function update() {
 		$db = DB::getInstance();
 		$queryStr = "UPDATE ".self::$nomeTabella." ";
-		$queryStr .= "SET indirizzo='".$this->indirizzo."', latitudine=".$this->latitudine.", longitudine=".$this->longitudine.", idTag=".$this->idTag."', codiceCliente=".$this->codiceCliente." ";
+		$queryStr .= "SET indirizzo='".$this->indirizzo."', latitudine=".$this->latitudine.", longitudine=".$this->longitudine.", idTag=".$this->idTag.", codiceCliente=".$this->codiceCliente." ";
 		$queryStr .= "WHERE codicePC=".$this->codicePC;
 		try {
 			$db->query($queryStr);
 		} catch (DatabaseErrorException $exc) {
-			echo $queryStr;
+			echo "Update fallito<br>";
+			echo "La query che hai eseguito: " . $queryStr;
 			//echo $exc->getTraceAsString();
 		}
 	}
