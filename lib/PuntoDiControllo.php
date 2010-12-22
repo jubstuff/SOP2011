@@ -110,7 +110,6 @@ class PuntoDiControllo {
 		$db = DB::getInstance();
 		 $queryStr = "SELECT codicePC, indirizzo, latitudine, longitudine, idTag, C.nomeCliente ";
 		 $queryStr .= "FROM PuntiDiControllo P JOIN Clienti C ON(P.codiceCliente = C.codiceCliente)";
-		 //$queryStr = "SELECT codicePC, indirizzo, latitudine, longitudine, idTag, codiceCliente FROM PuntiDiControllo";
 		try {
 			$result = $db->query($queryStr);
 			$out = array();
@@ -132,8 +131,8 @@ class PuntoDiControllo {
 	public function save() {
 		//@todo validare i dati 
 		$db = DB::getInstance();
-		$queryStr = "INSERT INTO " . self::$nomeTabella . "(indirizzo, latitudine, longitudine, idTag, codiceCliente) 
-		             VALUES ('$this->indirizzo', '$this->latitudine', '$this->longitudine', '$this->idTag', '$this->codiceCliente')"; //@todo ricordarsi di modificare SHA1
+		$queryStr = "INSERT INTO " . self::$nomeTabella . "(indirizzo, latitudine, longitudine, idTag, codiceCliente) ";
+		$querStr .= "VALUES ('$this->indirizzo', '$this->latitudine', '$this->longitudine', '$this->idTag', '$this->codiceCliente')";
 		try {
 			$db->query($queryStr);
 		} catch (DatabaseErrorException $exc) {
