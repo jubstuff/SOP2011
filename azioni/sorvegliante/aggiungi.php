@@ -26,7 +26,9 @@ if (empty($e)) {
 	$r->doRedirect();
 } else {
 	//ci sono errori - redirigere al form
-	$r = new Redirect(PUBLIC_URL . '/ASC/sorveglianti/aggiungi.php');
+	$_SESSION['clean'] = $clean;
+	$_SESSION['errors'] = $e;
+	$r = new Redirect(PUBLIC_URL . '/ASC/sorveglianti/nuovo.php');
 	$r->doRedirect();
 }
 ?>
