@@ -6,7 +6,7 @@ require_once 'PuntoDiControllo.php';
 //echo "azioni/puntodicontrollo/modifica.php";
 //var_dump($_POST);
 
-$id = isset($_POST['id']) ? $_POST['id'] : '';
+$matricola = isset($_POST['id']) ? $_POST['id'] : '';
 $indirizzo = isset($_POST['indirizzo']) ? $_POST['indirizzo'] : '';
 $latitudine = isset($_POST['lat']) ? $_POST['lat'] : '';
 $longitudine = isset($_POST['lng']) ? $_POST['lng'] : '';
@@ -15,7 +15,7 @@ $codiceCliente = isset($_POST['codiceCliente']) ? $_POST['codiceCliente'] : '';
 
 
 
-$p = PuntoDiControllo::find_by_id($id);
+$p = PuntoDiControllo::find_by_id($matricola);
 $p->setIndirizzo($indirizzo);
 $p->setLatitudine($latitudine);
 $p->setLongitudine($longitudine);

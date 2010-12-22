@@ -23,17 +23,17 @@ $tuttiIPdc = PuntoDiControllo::findAll();
 				<th>Cliente</th>
 			</tr>
 			<?php foreach ($tuttiIPdc as $s) : 
-				$id = $s->getCodicePC();
+				$matricola = $s->getCodicePC();
 				?>
 				<tr>
-					<td><?php echo $id; ?></td>
+					<td><?php echo $matricola; ?></td>
 					<td><?php echo $s->getIndirizzo(); ?></td>
 					<td><?php echo $s->getLatitudine(); ?></td>
 					<td><?php echo $s->getLongitudine(); ?></td>
 					<td><?php echo $s->getIdTag(); ?></td>
 					<td><?php echo $s->getCodiceCliente(); ?></td>
-					<td><a href="modifica.php?id=<?php echo $id; ?>">Modifica</a></td>
-					<td><a href="<?php echo $actionUrl; ?>/puntoDiControllo/elimina.php?id=<?php echo $id; ?>">Elimina</a></td>
+					<td><a href="modifica.php?id=<?php echo $matricola; ?>">Modifica</a></td>
+					<td><a href="<?php echo $actionUrl; ?>/puntoDiControllo/elimina.php?id=<?php echo $matricola; ?>">Elimina</a></td>
 				</tr>
 			<?php endforeach; ?>
 		</table> 
