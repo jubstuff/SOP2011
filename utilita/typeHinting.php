@@ -14,15 +14,10 @@ class Myclass {
 
 }
 
-function stampa(array $m) {
+function stampa(Myclass $m) {
 	echo $m->getAttr();
 }
 
 $my = new Myclass("ciccio");
-
-try {
-	stampa("ciccio");
-} catch (Exception $e) {
-	echo "devi passare un oggetto Myclass alla funzione stampa";
-}
+stampa('3,5');
 ?>

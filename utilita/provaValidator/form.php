@@ -1,8 +1,4 @@
-<?php
-session_start();
-?>
-
-
+<?php session_start(); ?>
 <!doctype html>
 <html>
 	<head>
@@ -11,9 +7,12 @@ session_start();
 	<body>
 		<?php
 		$selected = 'selected="selected"';
+		
 		if (isset($_SESSION['errors'])) {
 			$e = $_SESSION['errors'];
 			$default = $_SESSION['clean'];
+			var_dump($e);
+			var_dump($default);
 			unset($_SESSION['errors']);
 			foreach ($e as $error) {
 				echo '<p style="color:#F00">' . $error . '</p>';

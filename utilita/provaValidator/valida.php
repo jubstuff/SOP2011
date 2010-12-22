@@ -13,9 +13,11 @@ $v->isNumeric('due');
 $e = $v->getError();
 
 if ( empty($e) ) {
+	//tutto ok
 	$r = new Redirect('success.php');
 	$r->doRedirect();
 } else {
+	//ci sono errori
 	$_SESSION['clean'] = $v->getClean();
 	$_SESSION['errors'] = $e;
 	$r = new Redirect('form.php');
