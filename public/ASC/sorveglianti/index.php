@@ -10,7 +10,7 @@ $tuttiISorveglianti = Sorvegliante::findAll();
       <title><?php echo $pageTitle; ?></title>
    </head>
    <body>
-		<h1>Amministrazione sorveglianti</h1>
+		<h1><?php echo $pageTitle ?></h1>
 		<p><a href="nuovo.php">Aggiungi Sorvegliante</a></p>
       <table>
 			<tr>
@@ -19,14 +19,17 @@ $tuttiISorveglianti = Sorvegliante::findAll();
 				<th>Cognome</th>
 			</tr>
 			<?php foreach ($tuttiISorveglianti as $s) : 
-				$id = $s->getMatricola();
+				$matricola = $s->getMatricola();
+				$matricolaClean = urlencode($matricola);
+				$modificaUrl = 'modifica.php?matricola=' . $matricolaClean;
+				$eliminaUrl = 'elimina.php?matricola=' . $matricolaClean;
 				?>
 				<tr>
-					<td><?php echo $id; ?></td>
+					<td><?php echo $matricola; ?></td>
 					<td><?php echo $s->getNome(); ?></td>
 					<td><?php echo $s->getCognome(); ?></td>
-					<td><a href="modifica.php?id=<?php echo $id; ?>">Modifica</a></td>
-					<td><a href="<?php echo $actionUrl; ?>/sorvegliante/elimina.php?id=<?php echo $id; ?>">Elimina</a></td>
+					<td><a href="<?php echo $modificaUrl; ?>">Modifica</a></td>
+					<td><a href="<?php echo $eliminaUrl; ?>">Elimina</a></td>
 				</tr>
 			<?php endforeach; ?>
 		</table> 

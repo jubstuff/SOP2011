@@ -1,13 +1,32 @@
 <?php
+session_start();
 require_once 'config.php';
 require_once 'Sorvegliante.php';
-if (isset($_POST['submit'])) {
-	$nome = $_POST['nome'];
-	$cognome = $_POST['cognome'];
-	$password = $_POST['password'];
-	$matricola = '';
-	$s = new Sorvegliante($nome, $cognome, $matricola, $password);
+require_once 'Validator.php';
+require_once 'Redirect.php';
+
+$v = new Validator($_POST);
+$v->isNotEmpty('nome');
+$v->isNotEmpty('cognome');
+$v->isNotEmpty('password');
+$v->isNotEmpty('codiceSquadra');
+
+$v->isAlnum('nome');
+$v->isAlnum('cognome');
+$v->isNumeric('codiceSquadra');
+
+$e = $v->getError();
+$clean = $v->getClean();
+if (empty($e)) {
+	//tutto ok
+	$matricola = ''; //la matricola viene inserita automaticamente da MySql
+	$s = new Sorvegliante($clean['nome'], $clean['cognome'], $matricola, $clean['password'], $clean['codiceSquadra']);
 	$s->save();
-	header("Location: ".$publicUrl."/ASC/sorveglianti/");
+	$r = new Redirect(PUBLIC_URL . '/ASC/sorveglianti/');
+	$r->doRedirect();
+} else {
+	//ci sono errori - redirigere al form
+	$r = new Redirect(PUBLIC_URL . '/ASC/sorveglianti/aggiungi.php');
+	$r->doRedirect();
 }
 ?>
