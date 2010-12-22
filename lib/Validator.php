@@ -46,7 +46,7 @@ class Validator {
 	}
 
 	public function isAlnum($key, $msg='') {
-		if ( isset ($this->rawRequest[$key]) && ctype_alnum($this->rawRequest[$key]) ) {
+		if ( isset ($this->rawRequest[$key]) && preg_match("(^[a-zA-Z ])", $this->rawRequest[$key])) {
 			$this->addClean($key, $this->rawRequest[$key]);
 			return TRUE;
 		} else {

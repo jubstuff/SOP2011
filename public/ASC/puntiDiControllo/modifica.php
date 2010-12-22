@@ -19,12 +19,8 @@ $s = PuntoDiControllo::find_by_id($_GET['id']);
 
 
 ?>
-<!doctype html>
-<html>
-   <head>
-      <title><?php echo $pageTitle; ?></title>
-   </head>
-   <body>
+<?php include HELPERS_DIR . '/testata.php'; ?>
+
 		<h1>Modifica punto di controllo</h1>
 		<form action="<?php echo ACTION_URL; ?>/puntoDiControllo/modifica.php" method="post">
 			<p>
@@ -52,6 +48,4 @@ $s = PuntoDiControllo::find_by_id($_GET['id']);
 				<input type="hidden" name="id" value="<?php echo $s->getCodicePC(); ?>" />
 			</p>
 		</form>
-
-	</body>
-</html>
+<?php include HELPERS_DIR . '/piepagina.php'; ?>

@@ -5,12 +5,8 @@ $pageTitle = "Amministra punti di controllo";
 $tuttiIPdc = PuntoDiControllo::findAll();
 
 ?>
-<!doctype html>
-<html>
-   <head>
-      <title><?php echo $pageTitle; ?></title>
-   </head>
-   <body>
+<?php include HELPERS_DIR . '/testata.php'; ?>
+
 		<h1>Amministrazione punti di controllo</h1>
 		<p><a href="">Aggiungi punto di controllo</a></p>
       <table>
@@ -37,5 +33,4 @@ $tuttiIPdc = PuntoDiControllo::findAll();
 				</tr>
 			<?php endforeach; ?>
 		</table> 
-	</body>
-</html>
+<?php include HELPERS_DIR . '/piepagina.php'; ?>
