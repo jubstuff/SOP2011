@@ -5,7 +5,5 @@ define("BASE_URL", 'http://' . $_SERVER['HTTP_HOST'] . ROOT_URL) ;
 define("PUBLIC_URL", BASE_URL . '/public');
 define("ACTION_URL", BASE_URL . '/azioni');
 
-$publicUrl = BASE_URL . '/public';
-$actionUrl = BASE_URL. '/azioni';
-
+define("HELPERS_DIR", ROOT_DIR . '/viewHelpers');
 ?>

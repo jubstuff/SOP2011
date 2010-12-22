@@ -4,12 +4,7 @@ require_once 'Sorvegliante.php';
 $pageTitle = "Amministra Sorveglianti";
 $tuttiISorveglianti = Sorvegliante::findAll();
 ?>
-<!doctype html>
-<html>
-   <head>
-      <title><?php echo $pageTitle; ?></title>
-   </head>
-   <body>
+<?php include HELPERS_DIR . '/testata.php'; ?>
 		<h1><?php echo $pageTitle ?></h1>
 		<p><a href="nuovo.php">Aggiungi Sorvegliante</a></p>
       <table>
@@ -33,5 +28,4 @@ $tuttiISorveglianti = Sorvegliante::findAll();
 				</tr>
 			<?php endforeach; ?>
 		</table> 
-	</body>
-</html>
+<?php include HELPERS_DIR . '/piepagina.php'; ?>

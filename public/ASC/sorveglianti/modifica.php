@@ -23,12 +23,7 @@ $s = Sorvegliante::find_by_id($clean['matricola']);
 
 $modificaUrl = ACTION_URL . '/sorvegliante/modifica.php';
 ?>
-<!doctype html>
-<html>
-   <head>
-      <title><?php echo $pageTitle; ?></title>
-   </head>
-   <body>
+<?php include HELPERS_DIR . '/testata.php'; ?>
 		<h1><?php echo $pageTitle; ?></h1>
 		<form action="<?php echo $modificaUrl; ?>" method="post">
 			<p>
@@ -44,6 +39,4 @@ $modificaUrl = ACTION_URL . '/sorvegliante/modifica.php';
 				<input type="hidden" name="matricola" value="<?php echo $s->getMatricola(); ?>" />
 			</p>
 		</form>
-
-	</body>
-</html>
+<?php include HELPERS_DIR . '/piepagina.php'; ?>

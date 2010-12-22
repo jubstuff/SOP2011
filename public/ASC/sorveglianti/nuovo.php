@@ -32,19 +32,7 @@ if (isset($_SESSION['errors'])) {
 	unset($_SESSION['clean']);
 }
 ?>
-<!doctype html>
-<html>
-   <head>
-		<meta charset="UTf-8">
-      <title><?php echo $pageTitle; ?></title>
-		<style type="text/css">
-		/*@todo creare css esterno */
-		ul.errorList {
-			color:#F00;
-		}
-		</style>
-   </head>
-   <body>
+<?php include HELPERS_DIR . '/testata.php'; ?>
 		<h1>Aggiungi nuovo sorvegliante</h1>
 
 		<?php if (isset($e)) : ?>
@@ -84,5 +72,4 @@ if (isset($_SESSION['errors'])) {
 				<input id="submit" name="submit" type="submit" value="Salva Sorvegliante" />
 			</p>
 		</form>
-	</body>
-</html>
+<?php include HELPERS_DIR . '/piepagina.php'; ?>

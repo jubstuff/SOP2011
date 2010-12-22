@@ -21,12 +21,7 @@ $clean = $v->getClean();
 $s = Sorvegliante::find_by_id($clean['matricola']);
 $eliminaUrl = ACTION_URL . '/sorvegliante/elimina.php';
 ?>
-<!doctype html>
-<html>
-   <head>
-      <title><?php echo $pageTitle; ?></title>
-   </head>
-   <body>
+<?php include HELPERS_DIR . '/testata.php'; ?>
 		<h1><?php echo $pageTitle; ?></h1>
 		<p>Sei sicuro di voler cancellare il sorvegliante "<?php echo $s; ?>"?</p>
 		<form action="<?php echo $eliminaUrl; ?>" method="post">
@@ -37,6 +32,4 @@ $eliminaUrl = ACTION_URL . '/sorvegliante/elimina.php';
 				<input type="hidden" name="matricola" value="<?php echo $s->getMatricola(); ?>" />
 			</p>
 		</form>
-
-	</body>
-</html>
+<?php include HELPERS_DIR . '/piepagina.php'; ?>
