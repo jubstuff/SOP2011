@@ -1,26 +1,27 @@
 <?php
 require_once 'config.php';
 require_once 'Sorvegliante.php';
+require_once 'Validator.php';
+require_once 'Redirect.php';
+
 
 $pageTitle = "Modifica Sorvegliante";
+$v = new Validator($_GET);
+//@todo fare decodeurl su matricola
+$v->isNotEmpty('matricola');
+$v->isNumeric('matricola');
 
-/*$validator = new Validator($_GET);
-if($validator->isNumeric('id')) {
-	$s = Sorvegliante::find_by_id($clean['id']);
-}*/
+$e = $v->getError();
+if(!empty($e)){
+	//@todo creare la pagina di errore generale
+	$r = new Redirect('error.php');
+	$r->doRedirect();
+}
 
-$s = Sorvegliante::find_by_id($_GET['id']);
+$clean = $v->getClean();
+$s = Sorvegliante::find_by_id($clean['matricola']);
 
-//$clean = array();
-//$errors = array();
-//if (isset($_GET['id']) && strlen($_GET['id']) && is_numeric($_GET['id'])) {
-//	$clean['id'] = $_GET['id'];	
-//} else {
-//	/* errore */
-//	die("Non dovresti essere qui!");
-//}
-
-
+$modificaUrl = ACTION_URL . '/sorvegliante/modifica.php';
 ?>
 <!doctype html>
 <html>
@@ -28,8 +29,8 @@ $s = Sorvegliante::find_by_id($_GET['id']);
       <title><?php echo $pageTitle; ?></title>
    </head>
    <body>
-		<h1>Modifica sorvegliante</h1>
-		<form action="<?php echo ACTION_URL; ?>/sorvegliante/modifica.php" method="post">
+		<h1><?php echo $pageTitle; ?></h1>
+		<form action="<?php echo $modificaUrl; ?>" method="post">
 			<p>
 				<label for="nome">Nome</label>
 				<input id="nome" name="nome" type="text" value="<?php echo $s->getNome(); ?>" />
@@ -40,7 +41,7 @@ $s = Sorvegliante::find_by_id($_GET['id']);
 			</p>
 			<p>
 				<input id="submit" name="submit" type="submit" value="Aggiorna Sorvegliante" />
-				<input type="hidden" name="id" value="<?php echo $s->getMatricola(); ?>" />
+				<input type="hidden" name="matricola" value="<?php echo $s->getMatricola(); ?>" />
 			</p>
 		</form>
 
