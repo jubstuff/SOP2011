@@ -8,7 +8,7 @@ $pageTitle = "Sistema Informativo SOP 2011";
 <p>Cosa vuoi fare?</p>
 <ul>
 	<li><a href="ASC/">Amministrare clienti e sorveglianti</a></li>
-	<li><a href="">Amministrare turni e percorsi <span style="color:#F00;">[Non disponibile]</span></a></li>
+	<li><a href="ATS/">Amministrare turni e percorsi</a></li>
 	<li><a href="">[Sorvegliante] Visualizzare i miei turni e percorsi <span style="color:#F00;">[Non disponibile]</span></a></li>
 </ul>
 <?php include HELPERS_DIR . '/piepagina.php'; ?>
