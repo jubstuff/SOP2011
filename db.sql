@@ -117,9 +117,9 @@ INSERT INTO Ruoli(tipo) VALUES('ASC');
 INSERT INTO Ruoli(tipo) VALUES('ATS');
 INSERT INTO Ruoli(tipo) VALUES('Sorvegliante');
 
-INSERT INTO Sorveglianti(nome, cognome, password) VALUES('Giustino', 'Borzacchiello', SHA1('ciccio'));
-INSERT INTO Sorveglianti(nome, cognome, password) VALUES('Gennaro', 'Alfano', SHA1('ciccio'));
-INSERT INTO Sorveglianti(nome, cognome, password) VALUES('Francesco Paolo', 'Cimmino', SHA1('ciccio'));
+INSERT INTO Sorveglianti(nome, cognome, password, codiceSquadra) VALUES('Giustino', 'Borzacchiello', SHA1('ciccio'),1);
+INSERT INTO Sorveglianti(nome, cognome, password, codiceSquadra) VALUES('Gennaro', 'Alfano', SHA1('ciccio'),1);
+INSERT INTO Sorveglianti(nome, cognome, password, codiceSquadra) VALUES('Francesco Paolo', 'Cimmino', SHA1('ciccio'),1);
 
 INSERT INTO Squadre(nomeSquadra) VALUES('default');
 INSERT INTO Squadre(nomeSquadra) VALUES('alfa');
