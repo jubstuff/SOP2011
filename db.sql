@@ -36,7 +36,7 @@ CREATE TABLE Sorveglianti
 	CONSTRAINT Sorveglianti_fk1
 	  FOREIGN KEY (codiceSquadra) REFERENCES Squadre(codiceSquadra)
 ) ENGINE = InnoDB;
---possibile inserimento dei dati anagrafici
+
 CREATE TABLE Clienti
 (
 	codiceCliente INTEGER AUTO_INCREMENT PRIMARY KEY,
@@ -116,14 +116,14 @@ CREATE TABLE PERCORSO_PDC
 INSERT INTO Ruoli(tipo) VALUES('ASC');
 INSERT INTO Ruoli(tipo) VALUES('ATS');
 INSERT INTO Ruoli(tipo) VALUES('Sorvegliante');
+	
+INSERT INTO Squadre(nomeSquadra) VALUES('default');
+INSERT INTO Squadre(nomeSquadra) VALUES('alfa');
+INSERT INTO Squadre(nomeSquadra) VALUES('bravo');
 
 INSERT INTO Sorveglianti(nome, cognome, password, codiceSquadra) VALUES('Giustino', 'Borzacchiello', SHA1('ciccio'),1);
 INSERT INTO Sorveglianti(nome, cognome, password, codiceSquadra) VALUES('Gennaro', 'Alfano', SHA1('ciccio'),1);
 INSERT INTO Sorveglianti(nome, cognome, password, codiceSquadra) VALUES('Francesco Paolo', 'Cimmino', SHA1('ciccio'),1);
-
-INSERT INTO Squadre(nomeSquadra) VALUES('default');
-INSERT INTO Squadre(nomeSquadra) VALUES('alfa');
-INSERT INTO Squadre(nomeSquadra) VALUES('bravo');
 
 INSERT INTO Clienti(nomeCliente) VALUES('auchan');
 INSERT INTO Clienti(nomeCliente) VALUES('expert');
