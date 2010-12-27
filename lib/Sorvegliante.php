@@ -90,8 +90,11 @@ class Sorvegliante {
 								 $out['password'], $out['codiceSquadra']);
 			return $s;
 		} catch (DatabaseErrorException $exc) {
-			echo '<p>', $queryStr, '</p>';
-			echo $exc->getTraceAsString();
+			$msg = "<p>Errore! Non riesco a trovare il Sorvegliante.</p>";
+			$msg .= "<p>La query usata: " . $queryStr . "</p>";
+			echo $msg;
+			echo '<p>' . $exc->getTraceAsString() . '</p>';
+			exit;
 		}
 	}
 
@@ -110,7 +113,11 @@ class Sorvegliante {
 			}
 			return $out;
 		} catch (DatabaseErrorException $exc) {
-			echo $exc->getTraceAsString();
+			$msg = "<p>Errore! Non riesco a trovare i Sorveglianti.</p>";
+			$msg .= "<p>La query usata: " . $queryStr . "</p>";
+			echo $msg;
+			echo '<p>' . $exc->getTraceAsString() . '</p>';
+			exit;
 		}
 	}
 
@@ -128,7 +135,11 @@ class Sorvegliante {
 		try {
 			$db->query($queryStr);
 		} catch (DatabaseErrorException $exc) {
-			echo $exc->getTraceAsString();
+			$msg = "<p>Errore! Non riesco a salvare il Sorvegliante.</p>";
+			$msg .= "<p>La query usata: " . $queryStr . "</p>";
+			echo $msg;
+			echo '<p>' . $exc->getTraceAsString() . '</p>';
+			exit;
 		}
 	}
 
@@ -138,8 +149,11 @@ class Sorvegliante {
 		try {
 			$db->query($queryStr);
 		} catch (DatabaseErrorException $exc) {
-			echo $queryStr;
-			//echo $exc->getTraceAsString();
+			$msg = "<p>Errore! Non riesco a salvare il Sorvegliante.</p>";
+			$msg .= "<p>La query usata: " . $queryStr . "</p>";
+			echo $msg;
+			echo '<p>' . $exc->getTraceAsString() . '</p>';
+			exit;
 		}
 	}
 
@@ -149,8 +163,11 @@ class Sorvegliante {
 		try {
 			$db->query($queryStr);
 		} catch (DatabaseErrorException $exc) {
-			echo $queryStr;
-			//echo $exc->getTraceAsString();
+			$msg = "<p>Errore! Non riesco a cancellare il Sorvegliante.</p>";
+			$msg .= "<p>La query usata: " . $queryStr . "</p>";
+			echo $msg;
+			echo '<p>' . $exc->getTraceAsString() . '</p>';
+			exit;
 		}
 	}
 
