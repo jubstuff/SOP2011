@@ -1,0 +1,2 @@
+INSERT INTO PuntiDiControllo(indirizzo, latitudine, longitudine, idTag, codiceCliente) VALUES('via roma 3 Napoli Italia', 40.846601, 14.249756, 1, 1);
+INSERT INTO PuntiDiControllo(indirizzo, latitudine, longitudine, idTag, codiceCliente) VALUES('via giotto 31, Sant\'antimo, napoli', 40.944815, 14.235336, 1, 1);

@@ -271,3 +271,9 @@ hr.space {background:#fff;color:#fff;visibility:hidden;}
 	padding: 10px;
 	width:960px;
 }
+
+#map{
+	width:500px;
+	height: 600px;
+	background-color:#CCC;
+}

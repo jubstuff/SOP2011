@@ -4,7 +4,7 @@ $indirizzo = $_POST['indirizzo'];
 
 $indirizzoEnc = urlencode($indirizzo);
 $url = "http://maps.googleapis.com/maps/api/geocode/xml?address=$indirizzoEnc&sensor=false";
-echo $url;
+//echo $url;
 $db = DB::getInstance();
 $indirizzo = $db->escape($indirizzo);
 $xml = simplexml_load_file($url) or die("url not loading"); 
@@ -14,5 +14,5 @@ $str = "INSERT INTO PuntiDiControllo(indirizzo, latitudine, longitudine, idTag, 
 $str = sprintf($str, $indirizzo, $latitudine, $longitudine, 1, 1);
 $fp = fopen ("PuntiDiControllo.sql", "a+");
 fwrite ($fp, $str);
-//header("Location: provalatlong.php");
+header("Location: provalatlong.php");
 ?>
