@@ -1,0 +1,1 @@
+[{"indirizzo":"Via Trieste e Trento 5 Sant'Antimo Napoli","lat":"40.943054","lng":"14.236385"},{"indirizzo":"Via Trieste e Trento 54 Sant'Antimo Napoli","lat":"40.943126","lng":"14.235665"}]

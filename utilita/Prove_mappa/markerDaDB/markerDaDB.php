@@ -20,20 +20,58 @@ while ($row = $result->fetch_assoc()) {
 		<meta http-equiv="content-type" content="text/html; charset=utf-8" />
 		<title>Prova recupera punti di controllo dal database</title>
 		<link rel="stylesheet" type="text/css" href="<?php echo PUBLIC_URL . '/css/screen.css'; ?>"/>
+		<style type="text/css">
+			#info {
+				width:100%;
+				text-align: center;
+				font-size:130%;
+				height: 40px;
+				color:#00CC00;
+			}
+
+			#map {
+				float:left;
+			}
+			#pdc {
+				float:left;
+				width:400px;
+			}
+			#percorsoWrap {
+				float:left;
+				width:300px;
+			}
+			#info{
+				height: 20px;
+			}
+		</style>
 		<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.4.4/jquery.min.js"></script>
 		<script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=true"></script>
 		<script type="text/javascript" src="marker.js"></script>
    </head>
 	<body>
 		<h1>Recupera punti da DB</h1>
-		<form>
-			<select id="luoghi">
+		<div id="info"></div>
+		<div id="map"></div>
+		<div id="pdc">
+			<select id="luoghi" size="10">
 				<?php foreach ($pdc as $luogo): ?>
 					<option value="<?php echo $luogo['latitudine'] . ',' . $luogo['longitudine']; ?>"><?php
 				echo trim($luogo['indirizzo']);
 					?></option>
 				<?php endforeach; ?>
 			</select>
-		</form>
+		</div>
+		<div id="percorsoWrap">
+			<table id="percorso">
+				<thead>
+					<tr>
+						<th>Indirizzo</th>
+					</tr>
+				</thead>
+				<tbody>
+				</tbody>
+			</table>
+			<button id="salvaPercorso" name="salvaPercorso">Salva Percorso</button>
+		</div>
 	</body>
 </html>
