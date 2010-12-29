@@ -129,7 +129,7 @@ INSERT INTO Clienti(nomeCliente) VALUES('auchan');
 INSERT INTO Clienti(nomeCliente) VALUES('expert');
 INSERT INTO Clienti(nomeCliente) VALUES('eldo');
 
-INSERT INTO PuntiDiControllo(indirizzo, latitudine, longitudine, idTag, codiceCliente) VALUES('via Roma 3 Sant\'Antimo Napoli', 40.939137, 14.236021, 1, 1)
+INSERT INTO PuntiDiControllo(indirizzo, latitudine, longitudine, idTag, codiceCliente) VALUES('via Roma 3 Sant\'Antimo Napoli', 40.939137, 14.236021, 1, 1);
 INSERT INTO PuntiDiControllo(indirizzo, latitudine, longitudine, idTag, codiceCliente) VALUES('Via Germania 18 Sant\'Antimo Napoli', 40.940310, 14.239848, 1, 1);
 INSERT INTO PuntiDiControllo(indirizzo, latitudine, longitudine, idTag, codiceCliente) VALUES('Via Trieste e Trento 5 Sant\'Antimo Napoli', 40.943054, 14.236385, 1, 1);
 INSERT INTO PuntiDiControllo(indirizzo, latitudine, longitudine, idTag, codiceCliente) VALUES('Via Polonia 10 Sant\'Antimo Napoli', 40.935598, 14.239135, 1, 1);
