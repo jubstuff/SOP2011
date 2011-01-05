@@ -263,17 +263,42 @@ hr.space {background:#fff;color:#fff;visibility:hidden;}
 .clearfix:after, .container:after {content:"\0020";display:block;height:0;clear:both;visibility:hidden;overflow:hidden;}
 .clearfix, .container {display:block;}
 .clear {clear:both;}
+/*
 
+NOSTRE REGOLE CSS
+*/
 #wrapper {
-	border-left: 1px solid #369;
-	border-right: 1px solid #369;
-	margin: 0 auto;
-	padding: 10px;
-	width:960px;
+    border-left: 1px solid #369;
+    border-right: 1px solid #369;
+    margin: 0 auto;
+    padding: 10px;
+    width:960px;
 }
 
 #map{
-	width:500px;
-	height: 600px;
-	background-color:#CCC;
+    float:left;
+    height: 600px;
+    background-color:#CCC;
+    width:500px;
 }
+
+#info {
+    width:100%;
+    text-align: center;
+    font-size:130%;
+    height: 40px;
+    color:#00CC00;
+}
+
+#pdc {
+    float:left;
+    width:400px;
+}
+#percorsoWrap {
+    float:left;
+    width:300px;
+}
+#info{
+    height: 20px;
+}
+

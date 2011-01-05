@@ -5,7 +5,7 @@ require_once 'DB.php';
 $db = DB::getInstance();
 
 
-$queryStr = "SELECT indirizzo, latitudine, longitudine FROM PuntiDiControllo";
+$queryStr = "SELECT codicePC, indirizzo, latitudine, longitudine FROM PuntiDiControllo";
 $result = $db->query($queryStr);
 $pdc = array();
 while ($row = $result->fetch_assoc()) {
@@ -41,6 +41,7 @@ while ($row = $result->fetch_assoc()) {
 				width:300px;
 			}
 			#info{
+
 				height: 20px;
 			}
 		</style>
@@ -55,7 +56,7 @@ while ($row = $result->fetch_assoc()) {
 		<div id="pdc">
 			<select id="luoghi" size="10">
 				<?php foreach ($pdc as $luogo): ?>
-					<option value="<?php echo $luogo['latitudine'] . ',' . $luogo['longitudine']; ?>"><?php
+					<option value="<?php echo $luogo['latitudine'] . ',' . $luogo['longitudine'] . ',' . $luogo['codicePC']; ?>"><?php
 				echo trim($luogo['indirizzo']);
 					?></option>
 				<?php endforeach; ?>
@@ -71,7 +72,16 @@ while ($row = $result->fetch_assoc()) {
 				<tbody>
 				</tbody>
 			</table>
-			<button id="salvaPercorso" name="salvaPercorso">Salva Percorso</button>
+			
+			<form id="salvaPercorso" action="salva.php" method="post">
+				<p>
+					<label for="nome">Nome Percorso</label>
+					<input type="text" id="nome" name="nome" />
+				</p>
+				<p><input type="submit" value="Salva Percorso" name="salvaPercorso" /></p>
+			</form>
+			
+			<!-- <button id="salvaPercorso" name="salvaPercorso">Salva Percorso</button> -->
 		</div>
 	</body>
 </html>

@@ -1,10 +1,10 @@
 <?php
-//echo "Richiesta ricevuta dalla mappa";
-$percorso =  json_encode($_POST['p']);
-//$json = json_decode($_POST['s']);
-//
+$nomePercorso = urldecode($_POST['form']);
+$form = explode('=', $nomePercorso);
+$percorso =  $form[1];
+
 $fp = fopen ("Json.txt", "w+");
 fwrite ($fp, $percorso);
 fclose($fp);
-//var_dump($_POST);
+
 ?>

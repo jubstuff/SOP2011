@@ -64,7 +64,6 @@ CREATE TABLE Percorsi
 	oraFine TIME NOT NULL,
 	partenza INTEGER NOT NULL,
 	arrivo INTEGER NOT NULL,
-	codiceTurno INTEGER NOT NULL,
 
 	CONSTRAINT Percorsi_fk1
 	  FOREIGN KEY (partenza) REFERENCES PuntiDiControllo(codicePC),
@@ -84,9 +83,6 @@ CREATE TABLE Turni
 	  
 	CONSTRAINT Turni_fk2  FOREIGN KEY (codicePercorso) REFERENCES Percorsi(codicePercorso)
 ) ENGINE = InnoDB;
-
-ALTER TABLE Percorsi ADD CONSTRAINT Percorsi_fk3
-	  FOREIGN KEY (codiceTurno) REFERENCES Turni(codiceTurno);
 
 
 CREATE TABLE TURNO_PERCORSO

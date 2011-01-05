@@ -56,9 +56,8 @@ $(document).ready(function(){
 	$('#salvaPercorso').submit(function(event){
 		//		console.log(percorso);
 		event.preventDefault();
-		$.post('salva.php', {
-			p:percorso,
-			form:$(this).serialize()
+		$.post($(this).attr('action'), {
+			p:percorso
 		}, function(){
 			$("#info").show().fadeOut(1500);
 		});
