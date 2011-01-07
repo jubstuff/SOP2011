@@ -18,11 +18,13 @@ $tuttiISorveglianti = Sorvegliante::findAll();
 				$matricolaClean = urlencode($matricola);
 				$modificaUrl = 'modifica.php?matricola=' . $matricolaClean;
 				$eliminaUrl = 'elimina.php?matricola=' . $matricolaClean;
+				$infoUrl = 'dettagli.php?matricola=' . $matricolaClean;
 				?>
 				<tr>
 					<td><?php echo $matricola; ?></td>
 					<td><?php echo $s->getNome(); ?></td>
 					<td><?php echo $s->getCognome(); ?></td>
+					<td><a href="<?php echo $infoUrl; ?>">Dettagli</a></td>
 					<td><a href="<?php echo $modificaUrl; ?>">Modifica</a></td>
 					<td><a href="<?php echo $eliminaUrl; ?>">Elimina</a></td>
 				</tr>
