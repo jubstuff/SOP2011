@@ -3,9 +3,15 @@ require_once 'config.php';
 require_once 'Sorvegliante.php';
 require_once 'Validator.php';
 require_once 'Redirect.php';
+require_once 'Squadra.php';
 
 
 $pageTitle = "Modifica Sorvegliante";
+$modificaUrl = ACTION_URL . '/sorvegliante/modifica.php';
+$selected = 'selected="selected"';
+
+
+
 $v = new Validator($_GET);
 //@todo fare decodeurl su matricola
 $v->isNotEmpty('matricola');
@@ -21,7 +27,6 @@ if(!empty($e)){
 $clean = $v->getClean();
 $s = Sorvegliante::find_by_id($clean['matricola']);
 
-$modificaUrl = ACTION_URL . '/sorvegliante/modifica.php';
 ?>
 <?php include HELPERS_DIR . '/testata.php'; ?>
 		<h1><?php echo $pageTitle; ?></h1>

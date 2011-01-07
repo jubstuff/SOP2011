@@ -9,7 +9,7 @@ $pageTitle = "Aggiungi Sorvegliante";
 $aggiungiUrl = ACTION_URL . '/sorvegliante/aggiungi.php';
 $selected = 'selected="selected"';
 
-$out = Squadra::findAll();
+$squadre = Squadra::findAll();
 
 $default = array('nome'=>'','cognome'=>'','codiceSquadra'=>1);
 
@@ -50,7 +50,7 @@ if (isset($_SESSION['errors'])) {
 			<p>
 				<label for="codiceSquadra">Squadra</label>
 				<select id="codiceSquadra" name="codiceSquadra">
-					<?php foreach ($out as $s) : ?>
+					<?php foreach ($squadre as $s) : ?>
 						<option value="<?php echo $s['codiceSquadra']; ?>" 
 								  <?php if ($default['codiceSquadra'] == $s['codiceSquadra'])
 									  echo $selected; ?>>
