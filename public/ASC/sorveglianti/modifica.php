@@ -12,8 +12,6 @@ $selected = 'selected="selected"';
 
 $squadre = Squadra::findAll();
 
-
-
 $v = new Validator($_GET);
 //@todo fare decodeurl su matricola
 $v->isNotEmpty('matricola');
