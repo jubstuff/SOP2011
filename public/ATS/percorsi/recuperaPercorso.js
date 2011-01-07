@@ -19,7 +19,7 @@ $(document).ready(function(){
 	$("#elencoPercorsi > li > a").click(function(event){
 		event.preventDefault();
 		var codicePercorso = $(this).attr('href');
-		$.getJSON('percorso.json.php', {
+		$.getJSON('percorso.json.php', { //@todo utilizzare la funzione $.ajax
 			'codicePercorso':codicePercorso
 		},function(markers){
 			var puntiIntermedi = creaPuntiIntermedi(markers);

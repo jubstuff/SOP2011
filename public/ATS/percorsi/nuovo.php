@@ -5,7 +5,6 @@ require_once 'DB.php';
 
 $db = DB::getInstance();
 
-
 $queryStr = "SELECT codicePC, indirizzo, latitudine, longitudine FROM PuntiDiControllo";
 $result = $db->query($queryStr);
 $pdc = array();
@@ -50,6 +49,5 @@ $aggiungiUrl = ACTION_URL . '/percorso/aggiungi.php';
 	<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.4.4/jquery.min.js"></script>
 	<script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=true"></script>
 	<script type="text/javascript" src="<?php echo BASE_URL; ?>/lib/common.js"></script>
-	
 	<script type="text/javascript" src="creaPercorso.js"></script>
 <?php include HELPERS_DIR . '/piepagina.php'; ?>
