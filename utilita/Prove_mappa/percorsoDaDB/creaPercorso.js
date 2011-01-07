@@ -1,17 +1,3 @@
-///**
-// * Inizializza una mappa centrata su napoli
-// */
-//function initialize(mapDiv) {
-//	var latlng = new google.maps.LatLng(40.847736,14.2519);
-//	var myOptions = {
-//		zoom: 10,
-//		center: latlng,
-//		mapTypeId: google.maps.MapTypeId.ROADMAP
-//	};
-//	return new google.maps.Map(mapDiv,
-//		myOptions);
-//}
-
 function creaPuntiIntermedi(puntiJson) {
 	var puntiIntermedi = [];
 	for(var i=0; i < puntiJson.length; i++){
@@ -25,12 +11,11 @@ function creaPuntiIntermedi(puntiJson) {
 }
 
 $(document).ready(function(){
-	//var mapDiv = creaDivMappa();
 	var mapDiv = document.getElementById('map');
 	var map = initialize(mapDiv);
 	var directionsDisplay = new google.maps.DirectionsRenderer();
 	var directionsService = new google.maps.DirectionsService();
-	
+
 	$("#elencoPercorsi > li > a").click(function(event){
 		event.preventDefault();
 		var codicePercorso = $(this).attr('href');
@@ -57,7 +42,7 @@ $(document).ready(function(){
 				};
 				
 			}
-			directionsService.route(request,function(response, status) {
+			directionsService.route(request, function(response, status) {
 				if (status == google.maps.DirectionsStatus.OK) {
 					directionsDisplay.setMap(map);
 					directionsDisplay.setDirections(response);

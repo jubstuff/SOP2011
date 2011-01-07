@@ -87,7 +87,8 @@ CREATE TABLE TURNO_PERCORSO
 (
 	codiceTurno INTEGER NOT NULL,
 	codicePercorso INTEGER NOT NULL,
-	
+	CONSTRAINT TP_pk1
+		PRIMARY KEY(codiceTurno,codicePercorso);
 	CONSTRAINT TP_fk1
 	  FOREIGN KEY (codiceTurno) REFERENCES Turni(codiceTurno),
 	  
