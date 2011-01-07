@@ -9,21 +9,26 @@ $v = new Validator($_POST);
 $v->isNotEmpty('matricola');
 $v->isNotEmpty('nome');
 $v->isNotEmpty('cognome');
+$v->isNotEmpty('codiceSquadra');
 
 $v->isNumeric('matricola');
 $v->isAlnum('nome');
 $v->isAlnum('cognome');
+$v->isNumeric('codiceSquadra');
 
 $e = $v->getError();
 
 if (empty($e)) {
 	$clean = $v->getClean();
+	
 	//tutto ok
 	//recupera sorvegliante dal db
 	$s = Sorvegliante::find_by_id($clean['matricola']);
 	//aggiorna i suoi dati
 	$s->setNome($clean['nome']);
 	$s->setCognome($clean['cognome']);
+	$s->setCodiceSquadra($clean['codiceSquadra']);
+	
 	//salvalo nel db
 	$s->update();
 	//redirect all'index dei sorveglianti

@@ -145,7 +145,7 @@ class Sorvegliante {
 
 	public function update() {
 		$db = DB::getInstance();
-		$queryStr = "UPDATE " . self::$nomeTabella . " SET nome='" . $this->nome . "', cognome='" . $this->cognome . "' WHERE matricola=" . $this->matricola;
+		$queryStr = "UPDATE " . self::$nomeTabella . " SET nome='" . $this->nome . "', cognome='" . $this->cognome . "', codiceSquadra='" . $this->codiceSquadra ."' WHERE matricola=" . $this->matricola;
 		try {
 			$db->query($queryStr);
 		} catch (DatabaseErrorException $exc) {
