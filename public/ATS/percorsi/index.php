@@ -31,5 +31,5 @@ while ($row = $result->fetch_assoc()) {
 	<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.4.4/jquery.min.js"></script>
 	<script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=true"></script>
 	<script type="text/javascript" src="<?php echo BASE_URL; ?>/lib/common.js"></script>
-	<script type="text/javascript" src="creaPercorso.js"></script>	
+	<script type="text/javascript" src="recuperaPercorso.js"></script>
 <?php include HELPERS_DIR . '/piepagina.php'; ?>
