@@ -51,7 +51,7 @@ if (isset($_SESSION['errors'])) {
 				<label for="codiceSquadra">Squadra</label>
 				<select id="codiceSquadra" name="codiceSquadra">
 					<?php foreach ($squadre as $s) : ?>
-						<option value="<?php echo $s['codiceSquadra']; ?>" 
+						<option value="<?php echo $s['codiceSquadra']; ?>"
 								  <?php if ($default['codiceSquadra'] == $s['codiceSquadra'])
 									  echo $selected; ?>>
 						<?php echo $s['nomeSquadra']; ?>

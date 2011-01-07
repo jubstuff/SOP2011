@@ -75,11 +75,8 @@ CREATE TABLE Turni
 (
 	codiceTurno INTEGER AUTO_INCREMENT PRIMARY KEY,
 	codiceSquadra INTEGER NOT NULL,
-	codicePercorso INTEGER NOT NULL,
 	
-	CONSTRAINT Turni_fk1 FOREIGN KEY (codiceSquadra) REFERENCES Squadre(codiceSquadra),
-	  
-	CONSTRAINT Turni_fk2  FOREIGN KEY (codicePercorso) REFERENCES Percorsi(codicePercorso)
+	CONSTRAINT Turni_fk1 FOREIGN KEY (codiceSquadra) REFERENCES Squadre(codiceSquadra)
 ) ENGINE = InnoDB;
 
 
@@ -87,19 +84,22 @@ CREATE TABLE TURNO_PERCORSO
 (
 	codiceTurno INTEGER NOT NULL,
 	codicePercorso INTEGER NOT NULL,
-	CONSTRAINT TP_pk1
-		PRIMARY KEY(codiceTurno,codicePercorso);
+	
+	PRIMARY KEY(codiceTurno, codicePercorso),
+	
 	CONSTRAINT TP_fk1
-	  FOREIGN KEY (codiceTurno) REFERENCES Turni(codiceTurno),
+	  FOREIGN KEY (codiceTurno) REFERENCES Turni(codiceTurno) ON DELETE CASCADE,
 	  
 	CONSTRAINT TP_fk2
-	  FOREIGN KEY (codicePercorso) REFERENCES Percorsi(codicePercorso)
+	  FOREIGN KEY (codicePercorso) REFERENCES Percorsi(codicePercorso) ON DELETE CASCADE
 ) ENGINE = InnoDB;
 
 CREATE TABLE PERCORSO_PDC
 (
 	codicePercorso INTEGER NOT NULL,
 	codicePC INTEGER NOT NULL,
+	
+	PRIMARY KEY(codicePercorso, codicePC);
 	
 	CONSTRAINT PPDC_fk1
 	  FOREIGN KEY (codicePercorso) REFERENCES Percorsi(codicePercorso),
