@@ -2,23 +2,14 @@
 session_start();
 require_once 'config.php';
 require_once 'DB.php';
+require_once 'Squadra.php';
+
+
 $pageTitle = "Aggiungi Sorvegliante";
 $aggiungiUrl = ACTION_URL . '/sorvegliante/aggiungi.php';
 $selected = 'selected="selected"';
 
-//@fixme questo dovrebbe andare nella classe Squadra
-//recupera tutte le squadre
-$db = DB::getInstance();
-$queryStr = "SELECT codiceSquadra,nomeSquadra from Squadre";
-try {
-	$result = $db->query($queryStr);
-	$out = array();
-	while ($row = $result->fetch_assoc()) {
-		$out[] = $row;
-	}
-} catch (DatabaseErrorException $e) {
-	echo __FILE__ . "Impossibile eseguire la query";
-}
+$out = Squadra::findAll();
 
 $default = array('nome'=>'','cognome'=>'','codiceSquadra'=>1);
 
