@@ -61,6 +61,10 @@ class DB {
 		}
 	}
 
+	public function lastInsertId(){
+		return $this->conn->insert_id;
+	}
+
 	/**
 	 *
 	 * @param type $queryStr

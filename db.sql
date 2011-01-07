@@ -60,8 +60,6 @@ CREATE TABLE PuntiDiControllo
 CREATE TABLE Percorsi
 (
 	codicePercorso INTEGER AUTO_INCREMENT PRIMARY KEY,
-	oraInizio TIME NOT NULL,
-	oraFine TIME NOT NULL,
 	partenza INTEGER NOT NULL,
 	arrivo INTEGER NOT NULL,
 
