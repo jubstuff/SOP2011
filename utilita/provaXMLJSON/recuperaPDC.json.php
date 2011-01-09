@@ -4,7 +4,7 @@ require_once 'DB.php';
 
 /* recupero i posti dal database */
 $db = DB::getInstance();
-$queryStr = "SELECT indirizzo,latitudine,longitudine FROM PuntiDiControllo LIMIT 4";
+$queryStr = "SELECT indirizzo,latitudine,longitudine FROM PuntiDiControllo";
 $result  = $db->query($queryStr);
 
 

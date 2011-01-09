@@ -24,7 +24,7 @@ class DB {
 	private function __construct() {
 		$this->conn = new mysqli($this->dbHost, $this->user, $this->password, $this->dbName);
 		if (mysqli_connect_errno()) {
-			$msg = mysqli_connect_error();
+			$msg = $this->conn->connect_error;
 			throw new DatabaseErrorException($msg);
 		}
 		$this->conn->query("SET NAMES 'utf8'");
@@ -56,11 +56,15 @@ class DB {
 		if ($result !== FALSE) {
 			return $result;
 		} else {
-			$msg = "Query Fallita";
+			$msg = $this->conn->connect_error;
 			throw new DatabaseErrorException($msg);
 		}
 	}
-
+	/**
+	 * Restituisce l'id per l'ultima query effettuata, se il campo prevede
+	 * il vincolo AUTO_INCREMENT
+	 * @return integer
+	 */
 	public function lastInsertId(){
 		return $this->conn->insert_id;
 	}

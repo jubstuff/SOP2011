@@ -9,7 +9,7 @@ $pageTitle = 'Elimina sorvegliante';
 $v = new Validator($_GET);
 $v->isNotEmpty('matricola');
 $v->isNumeric('matricola');
-//@todo fare decodeurl su matricola
+
 $e = $v->getError();
 if(!empty($e)){
 	//@todo creare la pagina di errore generale
@@ -18,6 +18,7 @@ if(!empty($e)){
 }
 
 $clean = $v->getClean();
+$clean['matricola'] = urldecode($clean['matricola']);
 $s = Sorvegliante::find_by_id($clean['matricola']);
 $eliminaUrl = ACTION_URL . '/sorvegliante/elimina.php';
 ?>

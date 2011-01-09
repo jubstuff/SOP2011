@@ -84,7 +84,7 @@ class Turno {
 	 */
 	public static function findAll() {
 		$db = DB::getInstance();
-		$queryStr = "SELECT data, T.codiceTurno, nomeSquadra ";
+		$queryStr = "SELECT T.codiceTurno, S.nomeSquadra ";
                 $queryStr .= "FROM Turni T JOIN Squadre S ON (T.codiceSquadra = S.codiceSquadra) ";
                 $queryStr .= "ORDER BY Data DESC";
 		try {
@@ -98,7 +98,7 @@ class Turno {
 			$msg = "<p>Errore! Non riesco a trovare i Turni.</p>";
 			$msg .= "<p>La query usata: " . $queryStr . "</p>";
 			echo $msg;
-			echo '<p>' . $exc->getTraceAsString() . '</p>';
+			echo $exc->getTraceAsString();
 			exit;
 		}
 	}

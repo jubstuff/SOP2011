@@ -9,7 +9,7 @@ require_once 'Squadra.php';
 $pageTitle = "Dettagli Sorvegliante";
 
 $v = new Validator($_GET);
-//@todo fare decodeurl su matricola
+
 $v->isNotEmpty('matricola');
 $v->isNumeric('matricola');
 
@@ -21,6 +21,7 @@ if (!empty($e)) {
 }
 
 $clean = $v->getClean();
+$clean['matricola'] = urldecode($clean['matricola']);
 $s = Sorvegliante::find_by_id($clean['matricola']);
 $squadra = Squadra::find_by_id($s->getCodiceSquadra());
 ?>

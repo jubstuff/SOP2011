@@ -13,7 +13,6 @@ $selected = 'selected="selected"';
 $squadre = Squadra::findAll();
 
 $v = new Validator($_GET);
-//@todo fare decodeurl su matricola
 $v->isNotEmpty('matricola');
 $v->isNumeric('matricola');
 
@@ -25,6 +24,7 @@ if (!empty($e)) {
 }
 
 $clean = $v->getClean();
+$clean['matricola'] = urldecode($clean['matricola']);
 $s = Sorvegliante::find_by_id($clean['matricola']);
 ?>
 <?php include HELPERS_DIR . '/testata.php'; ?>

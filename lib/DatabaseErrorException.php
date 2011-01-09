@@ -5,7 +5,9 @@
  * @author just
  */
 class DatabaseErrorException extends Exception {
-	//put your code here
+	public function __construct($message, $code=0) {
+		parent::__construct($message, $code);
+	}
 }
 
 ?>
