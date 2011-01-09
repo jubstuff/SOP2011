@@ -75,7 +75,7 @@ CREATE TABLE Turni
 (
 	codiceTurno INTEGER AUTO_INCREMENT PRIMARY KEY,
 	codiceSquadra INTEGER NOT NULL,
-	
+	data DATE,
 	CONSTRAINT Turni_fk1 FOREIGN KEY (codiceSquadra) REFERENCES Squadre(codiceSquadra)
 ) ENGINE = InnoDB;
 

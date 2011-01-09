@@ -8,28 +8,28 @@ $tuttiITurni = Turno::findAll();
 <h1><?php echo $pageTitle ?></h1>
 <p><a href="nuovo.php">Nuovo turno</a></p>
 <?php if (is_array($tuttiITurni)) : ?>
-<table>
-	<tr>
-		<th>Data</th>
-		<th>Turno</th>
-		<th>Squadra</th>
-	</tr>
-<?php
+	<table>
+		<tr>
+			<th>Data</th>
+			<th>Turno</th>
+			<th>Squadra</th>
+		</tr>
+	<?php
 	foreach ($tuttiITurni as $t) :
 		$codiceTurno = $t['codiceTurno'];
-?>
+	?>
 		<tr>
 			<td><?php echo $t['data']; ?></td>
 			<td><?php echo $codiceTurno; ?></td>
 			<td><?php echo $t['nomeSquadra']; ?></td>
-			<td><a href=""<?php echo $codiceTurno; ?>>Visualizza turno</a></td>
+			<td><a href="<?php echo $codiceTurno; ?>">Visualizza turno</a></td>
 			<td><a href="modifica.php?codiceTurno=<?php echo $codiceTurno; ?>">Modifica</a></td>
 			<td><a href="elimina.php?codiceTurno=<?php echo $codiceTurno ?>">Elimina</a></td>
 		</tr>
-<?php
+	<?php
 		endforeach;
-		else: ?>
+	else: ?>
 		<p>Non ci sono turni</p>
 	<?php endif; ?>
-</table>
+	</table>
 <?php include HELPERS_DIR . '/piepagina.php'; ?>
