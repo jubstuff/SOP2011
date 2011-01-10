@@ -110,6 +110,28 @@ class Turno {
 		}
 	}
 
+	public static function find_by_codice_squadra($codiceSquadra) {
+		$db = DB::getInstance();
+		$queryStr = "SELECT T.codiceTurno, S.nomeSquadra, T.data ";
+		$queryStr .= "FROM Turni T JOIN Squadre S ON (T.codiceSquadra = S.codiceSquadra) ";
+		$queryStr .= "WHERE T.codiceSquadra=$codiceSquadra ";
+		$queryStr .= "ORDER BY T.data DESC";
+		try {
+			$result = $db->query($queryStr);
+			$out = array();
+			while ($row = $result->fetch_assoc()) {
+				$out[] = $row;
+			}
+			return $out;
+		} catch (DatabaseErrorException $exc) {
+			$msg = "<p>Errore! Non riesco a trovare i Turni.</p>";
+			$msg .= "<p>La query usata: " . $queryStr . "</p>";
+			echo $msg;
+			echo $exc->getTraceAsString();
+			exit;
+		}
+	}
+
 	public function __toString() {
 		$msg = $this->getData() . ' ' . $this->getCodiceTurno() . ' ' . $this->getCodiceSquadra();
 		return $msg;

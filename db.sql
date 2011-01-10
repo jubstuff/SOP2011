@@ -112,6 +112,9 @@ INSERT INTO Ruoli(tipo) VALUES('Sorvegliante');
 INSERT INTO Squadre(nomeSquadra) VALUES('default');
 INSERT INTO Squadre(nomeSquadra) VALUES('alfa');
 INSERT INTO Squadre(nomeSquadra) VALUES('bravo');
+INSERT INTO Squadre(nomeSquadra) VALUES('charlie');
+INSERT INTO Squadre(nomeSquadra) VALUES('delta');
+INSERT INTO Squadre(nomeSquadra) VALUES('echo');
 
 INSERT INTO Sorveglianti(nome, cognome, password, codiceSquadra) VALUES('Giustino', 'Borzacchiello', SHA1('ciccio'),1);
 INSERT INTO Sorveglianti(nome, cognome, password, codiceSquadra) VALUES('Gennaro', 'Alfano', SHA1('ciccio'),1);

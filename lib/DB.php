@@ -6,7 +6,7 @@
  *
  * @author just
  */
-require 'DatabaseErrorException.php';
+require_once 'DatabaseErrorException.php';
 
 class DB {
 

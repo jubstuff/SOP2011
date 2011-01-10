@@ -283,21 +283,34 @@ NOSTRE REGOLE CSS
 }
 
 #info {
-    width:100%;
-    text-align: center;
+	background-color: #529214;
+	border: 5px solid #00CC00;
+    color:greenyellow;
     font-size:130%;
     height: 40px;
-    color:#00CC00;
+    left:0;
+	position: absolute;
+	text-align: center;
+	top: 0;
+	width:100%;
 }
 
-#pdc {
-    float:left;
-    width:400px;
+
+#costruisciPercorso{
+	float:left;
+	margin-right: 20px;
+	width:400px;
 }
-#percorsoWrap {
-    float:left;
-    width:300px;
+
+#elencoPercorsi {
+	float:left;
+	width:200px;
 }
-#info{
-    height: 20px;
+
+#footer{
+	border-top: 1px solid #000;
+	clear:both;
+	margin-top: 10px;
+	text-align: center;
+
 }

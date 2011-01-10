@@ -20,8 +20,9 @@ $(document).ready(function(){
     var directionsService = new google.maps.DirectionsService();
     var request = {};
     var pDCInfo;
+	var infoText = $("<p></p>").text("Percorso salvato correttamente");
 	
-    $("#info").hide().text("Percorso salvato correttamente");
+    $("#info").hide().append(infoText);
 	
 	
     function creaMarker(optionSelected, lat, lng){
@@ -35,9 +36,9 @@ $(document).ready(function(){
     }
 	
     //@todo aggiungere rimozione degli elementi di un percorso
-    $("#percorso > li").live('click',function(){
-        alert("cliccato su un elemento del percorso");
-    });
+//    $("#percorso > li").live('click',function(){
+//        alert("cliccato su un elemento del percorso");
+//    });
     
     /* richiesta AJAX */
     function onSuccess(json) {
@@ -46,7 +47,7 @@ $(document).ready(function(){
             alert("Creazione fallita!");
             alert(json.query);
         } else if(response==1) {
-            $("#info").show().fadeOut(1500);
+            $("#info").show().fadeOut(1800);
             setTimeout(function(){window.location='index.php'}, 1500);
         }
     }
