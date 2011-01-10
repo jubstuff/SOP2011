@@ -23,7 +23,7 @@ class DB {
 	 */
 	private function __construct() {
 		$this->conn = new mysqli($this->dbHost, $this->user, $this->password, $this->dbName);
-		if (mysqli_connect_errno()) {
+		if (mysqli_connect_errno ()) {
 			$msg = $this->conn->connect_error;
 			throw new DatabaseErrorException($msg);
 		}
@@ -60,12 +60,13 @@ class DB {
 			throw new DatabaseErrorException($msg);
 		}
 	}
+
 	/**
 	 * Restituisce l'id per l'ultima query effettuata, se il campo prevede
 	 * il vincolo AUTO_INCREMENT
 	 * @return integer
 	 */
-	public function lastInsertId(){
+	public function lastInsertId() {
 		return $this->conn->insert_id;
 	}
 
@@ -76,12 +77,13 @@ class DB {
 	 */
 	public function fetchFirst($queryStr) {
 		$queryStr .= ' LIMIT 1';
-		try {
-			$result = $this->conn->query($queryStr);
-			$out = $result->fetch_assoc();
+		//$result = $this->conn->query($queryStr);
+		$result = $this->query($queryStr);
+		$out = $result->fetch_assoc();
+		if (!empty($out)) {
 			return $out;
-		} catch (DatabaseErrorException $e) {
-			die($e->getMessage()); //TODO cosa dovrei fare qui?
+		} else {
+			throw new DatabaseErrorException("Record non trovato");
 		}
 	}
 

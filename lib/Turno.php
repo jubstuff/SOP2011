@@ -143,19 +143,19 @@ class Turno {
 		}
 	}
 
-	/*public function update() {
-		$db = DB::getInstance();
-		$queryStr = "UPDATE " . self::$nomeTabella . " SET nome='" . $this->nome . "', cognome='" . $this->cognome . "' WHERE matricola=" . $this->matricola;
-		try {
-			$db->query($queryStr);
-		} catch (DatabaseErrorException $exc) {
-			$msg = "<p>Errore! Non riesco a salvare il Turno.</p>";
-			$msg .= "<p>La query usata: " . $queryStr . "</p>";
-			echo $msg;
-			echo '<p>' . $exc->getTraceAsString() . '</p>';
-			exit;
-		}
-	}*/
+	/* public function update() {
+	  $db = DB::getInstance();
+	  $queryStr = "UPDATE " . self::$nomeTabella . " SET nome='" . $this->nome . "', cognome='" . $this->cognome . "' WHERE matricola=" . $this->matricola;
+	  try {
+	  $db->query($queryStr);
+	  } catch (DatabaseErrorException $exc) {
+	  $msg = "<p>Errore! Non riesco a salvare il Turno.</p>";
+	  $msg .= "<p>La query usata: " . $queryStr . "</p>";
+	  echo $msg;
+	  echo '<p>' . $exc->getTraceAsString() . '</p>';
+	  exit;
+	  }
+	  } */
 
 	public function delete() {
 		$db = DB::getInstance();

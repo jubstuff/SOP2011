@@ -14,7 +14,7 @@ class Squadra {
 			$out = $db->fetchFirst($queryStr);
 			return $out;
 		} catch (DatabaseErrorException $e) {
-			echo __FILE__ . "Impossibile eseguire la query";
+			echo __FILE__ . " Impossibile eseguire la query";
 			exit;
 		}
 	}

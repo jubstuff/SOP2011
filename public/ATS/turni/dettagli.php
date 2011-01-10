@@ -12,7 +12,7 @@ $v = new Validator($_GET);
 
 $v->isNotEmpty('codiceTurno');
 $v->isNumeric('codiceTurno');
-
+var_dump($v);
 $e = $v->getError();
 if (!empty($e)) {
 	//@todo creare la pagina di errore generale
