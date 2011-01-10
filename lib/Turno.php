@@ -109,19 +109,10 @@ class Turno {
 	}
 
 	public function save() {
-		//@todo validare i dati
 		$db = DB::getInstance();
+		/* Salvataggio Turno */
 		$queryStr1 = "INSERT INTO " . self::$nomeTabella;
 		$queryStr1 .= "(data, codiceSquadra) VALUES ('$this->data', $this->codiceSquadra)";
-
-		$queryStr2 = "INSERT INTO Turno_Percorso (codiceTurno, codicePercorso) VALUES ";
-
-		$len = count($this->percorsi);
-		for ($i = 0; $i < $len - 1; $i++) {
-			$queryStr2 .= "(LAST_INSERT_ID(), " . $this->percorsi[$i] . "), ";
-		}
-		$queryStr2 .= "(LAST_INSERT_ID()," . $this->percorsi[$i++] . ");";
-
 		try {
 			$db->query($queryStr1);
 		} catch (DatabaseErrorException $exc) {
@@ -131,6 +122,14 @@ class Turno {
 			echo '<p>' . $exc->getTraceAsString() . '</p>';
 			exit;
 		}
+		/*
+		$queryStr2 = "INSERT INTO Turno_Percorso (codiceTurno, codicePercorso) VALUES ";
+		$len = count($this->percorsi);
+		for ($i = 0; $i < $len - 1; $i++) {
+			$queryStr2 .= "(LAST_INSERT_ID(), " . $this->percorsi[$i] . "), ";
+		}
+		$queryStr2 .= "(LAST_INSERT_ID()," . $this->percorsi[$i++] . ");";
+
 		try {
 			$db->query($queryStr2);
 		} catch (DatabaseErrorException $exc) {
@@ -139,7 +138,7 @@ class Turno {
 			echo $msg;
 			echo '<p>' . $exc->getTraceAsString() . '</p>';
 			exit;
-		}
+		}*/
 	}
 
 	public function update() {

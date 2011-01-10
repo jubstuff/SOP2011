@@ -2,23 +2,14 @@
 session_start();
 require_once 'config.php';
 require_once 'DB.php';
+require_once 'Squadra.php';
+
 $pageTitle = "Aggiungi Turno";
 $aggiungiUrl = ACTION_URL . '/turno/aggiungi.php';
 $selected = 'selected="selected"';
-
-//@fixme questo dovrebbe andare nella classe Squadra
-//recupera tutte le squadre
 $db = DB::getInstance();
-$queryStr = "SELECT codiceSquadra, nomeSquadra FROM Squadre";
-try {
-	$result = $db->query($queryStr);
-	$squadre = array();
-	while ($row = $result->fetch_assoc()) {
-		$squadre[] = $row;
-	}
-} catch (DatabaseErrorException $e) {
-	echo __FILE__ . "Impossibile eseguire la query";
-}
+
+$squadre = Squadra::findAll();
 
 $queryStr = "SELECT codicePercorso from Percorsi";
 try {

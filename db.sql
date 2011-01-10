@@ -98,12 +98,9 @@ CREATE TABLE PERCORSO_PDC
 (
 	codicePercorso INTEGER NOT NULL,
 	codicePC INTEGER NOT NULL,
-	
-	PRIMARY KEY(codicePercorso, codicePC);
-	
+	PRIMARY KEY(codicePercorso, codicePC),
 	CONSTRAINT PPDC_fk1
 	  FOREIGN KEY (codicePercorso) REFERENCES Percorsi(codicePercorso),
-	  
 	CONSTRAINT PPDC_fk2
 	  FOREIGN KEY (codicePC) REFERENCES PuntiDiControllo(codicePC)
 ) ENGINE = InnoDB;
