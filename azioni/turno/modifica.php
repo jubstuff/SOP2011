@@ -12,7 +12,6 @@ $v->isNotEmpty('data');
 $v->isNumeric('codiceTurno');
 $v->isNumeric('codiceSquadra');
 
-var_dump($v);
 $e = $v->getError();
 $clean = $v->getClean();
 if (empty($e)) {
@@ -23,8 +22,6 @@ if (empty($e)) {
 	//aggiorna i suoi dati
 	$t->setData($clean['data']);
 	$t->setCodiceSquadra($clean['codiceSquadra']);
-
-	var_dump($t);
 	//salvalo nel db
 	$t->update();
 	//redirect all'index dei sorveglianti

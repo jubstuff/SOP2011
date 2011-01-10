@@ -51,4 +51,12 @@ $modificaUrl = ACTION_URL . '/turno/modifica.php';
 		<input type="hidden" name="codiceTurno" value="<?php echo $t->getCodiceTurno(); ?>" />
 	</p>
 			</form>
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.4.4/jquery.min.js"></script>
+<script type="text/javascript" src="<?php echo BASE_URL; ?>/lib/jquery-ui-1.8.7.custom.min.js"></script>
+<script type="text/javascript">
+	$(document).ready(function(){
+		$("#data").datepicker();
+	})
+</script>
+
 <?php include HELPERS_DIR . '/piepagina.php'; ?>
