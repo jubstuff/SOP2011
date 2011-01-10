@@ -11,6 +11,7 @@ $db = DB::getInstance();
 
 $squadre = Squadra::findAll();
 
+//@todo questo dovrebbe stare nella classe Percorso
 $queryStr = "SELECT codicePercorso from Percorsi";
 try {
 	$result = $db->query($queryStr);
@@ -22,6 +23,7 @@ try {
 	echo __FILE__ . "Impossibile eseguire la query";
 }
 
+//il codice squadra di default è 1
 $default = array('data'=>'','codiceTurno'=>'','codiceSquadra'=>1, 'codicePercorso'=>'');
 
 if (isset($_SESSION['errors'])) {

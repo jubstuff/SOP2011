@@ -86,7 +86,7 @@ class Turno {
 		$db = DB::getInstance();
 		$queryStr = "SELECT T.codiceTurno, S.nomeSquadra, T.data ";
 		$queryStr .= "FROM Turni T JOIN Squadre S ON (T.codiceSquadra = S.codiceSquadra) ";
-		$queryStr .= "ORDER BY T.data DESC";
+		$queryStr .= "ORDER BY T.data ASC";
 		try {
 			$result = $db->query($queryStr);
 			$out = array();
@@ -122,13 +122,15 @@ class Turno {
 			echo '<p>' . $exc->getTraceAsString() . '</p>';
 			exit;
 		}
-		/*
-		$queryStr2 = "INSERT INTO Turno_Percorso (codiceTurno, codicePercorso) VALUES ";
+		/* salvataggio Turno_percorso */
+		$turnoID = $db->lastInsertId();
+
+		$queryStr2 = "INSERT INTO TURNO_PERCORSO(codiceTurno, codicePercorso) VALUES ";
 		$len = count($this->percorsi);
 		for ($i = 0; $i < $len - 1; $i++) {
-			$queryStr2 .= "(LAST_INSERT_ID(), " . $this->percorsi[$i] . "), ";
+			$queryStr2 .= "($turnoID, " . $this->percorsi[$i] . "), ";
 		}
-		$queryStr2 .= "(LAST_INSERT_ID()," . $this->percorsi[$i++] . ");";
+		$queryStr2 .= "($turnoID," . $this->percorsi[$i++] . ")";
 
 		try {
 			$db->query($queryStr2);
@@ -138,10 +140,10 @@ class Turno {
 			echo $msg;
 			echo '<p>' . $exc->getTraceAsString() . '</p>';
 			exit;
-		}*/
+		}
 	}
 
-	public function update() {
+	/*public function update() {
 		$db = DB::getInstance();
 		$queryStr = "UPDATE " . self::$nomeTabella . " SET nome='" . $this->nome . "', cognome='" . $this->cognome . "' WHERE matricola=" . $this->matricola;
 		try {
@@ -153,7 +155,7 @@ class Turno {
 			echo '<p>' . $exc->getTraceAsString() . '</p>';
 			exit;
 		}
-	}
+	}*/
 
 	public function delete() {
 		$db = DB::getInstance();

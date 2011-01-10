@@ -1,4 +1,5 @@
 <?php
+
 session_start();
 require_once 'config.php';
 require_once 'Turno.php';
@@ -16,7 +17,7 @@ if (empty($e)) {
 	//tutto ok
 	$codiceTurno = ''; //il codiceTurno viene inserito automaticamente da MySql
 	$t = new Turno($clean['data'], $clean['codiceSquadra']);
-        $t->associaPercorsi($_POST['codiciPercorsi']);
+	$t->associaPercorsi($_POST['codiciPercorsi']); //@todo validare i percorsi
 	$t->save();
 	$r = new Redirect(PUBLIC_URL . '/ATS/turni/');
 	$r->doRedirect();
