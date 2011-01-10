@@ -63,6 +63,7 @@ if (isset($_SESSION['errors'])) {
 		</select>
 	</p>
 	<fieldset id="percorsiWrapper">
+		<div id="labelPercorsi">
 	<?php foreach ($percorsi as $p): ?>
 		<p><input name="codiciPercorsi[]"
 				  id="percorso<?php echo $p['codicePercorso']; ?>"
@@ -71,6 +72,9 @@ if (isset($_SESSION['errors'])) {
 				  <?php if ($default['codicePercorso'] == $p['codicePercorso']) echo $checked; ?> />
 			<label for="percorso<?php echo $p['codicePercorso']; ?>">Percorso <?php echo $p['codicePercorso']; ?></label></p>
 	<?php endforeach; ?>
+		</div>
+		<div id="map"></div>
+		<div id="panel"></div>
 	</fieldset>
 	<p>
 		<input id="submit" name="submit" type="submit" value="Salva Turno" />
@@ -78,5 +82,6 @@ if (isset($_SESSION['errors'])) {
 </form>
 <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.4.4/jquery.min.js"></script>
 <script type="text/javascript" src="<?php echo BASE_URL; ?>/lib/jquery-ui-1.8.7.custom.min.js"></script>
-<script type="text/javascript" src="<?php echo PUBLIC_URL; ?>/js/caricaDatePicker.js"></script>
+<script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=true&language=it"></script>
+<script type="text/javascript" src="<?php echo PUBLIC_URL; ?>/js/turni/cercaPercorsiHover.js"></script>
 <?php include HELPERS_DIR . '/piepagina.php'; ?>

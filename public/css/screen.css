@@ -304,7 +304,7 @@ NOSTRE REGOLE CSS
 	float:left;
 	height: 500px;
 	overflow: auto;
-	width: 400px;
+	width: 350px;
 	margin-left: 10px;
 }
 
@@ -321,4 +321,9 @@ NOSTRE REGOLE CSS
 	margin-top: 10px;
 	text-align: center;
 
+}
+
+#labelPercorsi {
+	float:left;
+	width: 150px;
 }
