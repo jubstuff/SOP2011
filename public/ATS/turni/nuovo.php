@@ -31,7 +31,7 @@ if (isset($_SESSION['errors'])) {
 	$c = $_SESSION['clean'];
 
 	$default = array_merge($default, $c);
-	var_dump($default);
+
 	unset($_SESSION['errors']);
 	unset($_SESSION['clean']);
 }
