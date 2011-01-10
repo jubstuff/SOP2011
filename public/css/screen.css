@@ -277,9 +277,9 @@ NOSTRE REGOLE CSS
 
 #map{
     float:left;
-    height: 600px;
+    height: 500px;
     background-color:#CCC;
-    width:500px;
+    width:400px;
 }
 
 #info {
@@ -295,6 +295,18 @@ NOSTRE REGOLE CSS
 	width:100%;
 }
 
+#elencoPercorsi {
+	float:left;
+	width:100px;
+}
+
+#panel {
+	float:left;
+	height: 500px;
+	overflow: auto;
+	width: 400px;
+	margin-left: 10px;
+}
 
 #costruisciPercorso{
 	float:left;
@@ -302,10 +314,6 @@ NOSTRE REGOLE CSS
 	width:400px;
 }
 
-#elencoPercorsi {
-	float:left;
-	width:200px;
-}
 
 #footer{
 	border-top: 1px solid #000;

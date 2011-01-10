@@ -6,13 +6,13 @@ require_once 'Squadra.php';
 
 $pageTitle = "Aggiungi Turno";
 $aggiungiUrl = ACTION_URL . '/turno/aggiungi.php';
-$selected = 'selected="selected"';
+$checked = 'checked="checked"';
 $db = DB::getInstance();
 
 $squadre = Squadra::findAll();
 
 //@todo questo dovrebbe stare nella classe Percorso
-$queryStr = "SELECT codicePercorso from Percorsi";
+$queryStr = "SELECT codicePercorso from Percorsi ORDER BY codicePercorso";
 try {
 	$result = $db->query($queryStr);
 	$percorsi = array();
@@ -47,7 +47,7 @@ if (isset($_SESSION['errors'])) {
 	</ul>
 <?php endif; ?>
 
-	<form action="<?php echo $aggiungiUrl; ?>" method="post">
+	<form id="nuovoTurno" action="<?php echo $aggiungiUrl; ?>" method="post">
 			<p>
 				<label for="data">Data</label>
 				<input id="data" name="data" type="text" value="<?php echo $default['data']; ?>" />
@@ -58,22 +58,20 @@ if (isset($_SESSION['errors'])) {
 <?php foreach ($squadre as $s) : ?>
 						<option value="<?php echo $s['codiceSquadra']; ?>"
 <?php if ($default['codiceSquadra'] == $s['codiceSquadra'])
-				echo $selected; ?>><?php echo $s['nomeSquadra']; ?></option>
+				echo $checked; ?>><?php echo $s['nomeSquadra']; ?></option>
 					<?php endforeach; ?>
 		</select>
 	</p>
-	<p>
-		<label for="codiciPercorsi[]">Percorso</label>
-		<select id="codiciPercorsi" name="codiciPercorsi[]" multiple="multiple">
-<?php foreach ($percorsi as $p) : ?>
-				<option value="<?php echo $p['codicePercorso']; ?>"
-<?php if ($default['codicePercorso'] == $p['codicePercorso'])
-							echo $selected; ?>>
-					<?php echo $p['codicePercorso']; ?>
-				</option>
-<?php endforeach; ?>
-		</select>
-	</p>
+	<fieldset id="percorsiWrapper">
+	<?php foreach ($percorsi as $p): ?>
+		<p><input name="codiciPercorsi[]"
+				  id="percorso<?php echo $p['codicePercorso']; ?>"
+				  type="checkbox"
+				  value="<?php echo $p['codicePercorso']; ?>"
+				  <?php if ($default['codicePercorso'] == $p['codicePercorso']) echo $checked; ?> />
+			<label for="percorso<?php echo $p['codicePercorso']; ?>">Percorso <?php echo $p['codicePercorso']; ?></label></p>
+	<?php endforeach; ?>
+	</fieldset>
 	<p>
 		<input id="submit" name="submit" type="submit" value="Salva Turno" />
 	</p>

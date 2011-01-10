@@ -5,15 +5,18 @@ $(document).ready(function(){
 	var directionsDisplay = new google.maps.DirectionsRenderer();
 	var directionsService = new google.maps.DirectionsService();
 
-	$("#elencoPercorsi > li > a").click(function(event){
+	$("#percorsiWrapper p").hover(function(){
 		//impedisce al link di essere attivato normalmente
-		event.preventDefault();
 		//recupera il codice del percorso
-		var codicePercorso = $(this).attr('href');
+		$(this).css('background-color','#FFFF66');
+		var codicePercorso = $(this).children(":checkbox").first().val();
 		$.getJSON('percorso.json.php', {
 			'codicePercorso':codicePercorso
 		}, recuperaPercorso);
 		return false;
+	},
+	function(){
+		$(this).css('background-color','#FFF');
 	});
 
 	/**
