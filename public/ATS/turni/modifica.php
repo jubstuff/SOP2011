@@ -55,7 +55,7 @@ $modificaUrl = ACTION_URL . '/turno/modifica.php';
 <script type="text/javascript" src="<?php echo BASE_URL; ?>/lib/jquery-ui-1.8.7.custom.min.js"></script>
 <script type="text/javascript">
 	$(document).ready(function(){
-		$("#data").datepicker();
+		$("#data").datepicker({ dateFormat: 'yy-mm-dd' });
 	})
 </script>
 

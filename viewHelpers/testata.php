@@ -6,6 +6,7 @@
 		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 		<title><?php echo $pageTitle; ?></title>
 		<link rel="stylesheet" type="text/css" href="<?php echo PUBLIC_URL.'/css/screen.css'; ?>"/>
+		<link rel="stylesheet" type="text/css" href="<?php echo PUBLIC_URL.'/css/jquery-ui-1.8.7.custom.css'; ?>"/>
    </head>
 	<body>
 		<div id="wrapper">
