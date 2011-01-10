@@ -26,7 +26,7 @@ $tuttiITurni = Turno::find_by_codice_squadra($sorvegliante->getCodiceSquadra());
 ?>
 		<tr>
 			<td><?php echo $t['data']; ?></td>
-			<td><a href="dettagli.php?codiceTurno=<?php echo $codiceTurno; ?>">Visualizza turno</a></td>
+			<td><a href="dettagliTurno.php?codiceTurno=<?php echo $codiceTurno; ?>">Visualizza turno</a></td>
 		</tr>
 <?php
 		endforeach;

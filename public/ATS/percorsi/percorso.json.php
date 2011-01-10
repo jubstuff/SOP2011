@@ -2,8 +2,8 @@
 require_once 'config.php';
 require_once 'DB.php';
 
-$codicePercorso = $_GET['codicePercorso'];
 //@todo validare richiesta get
+$codicePercorso = $_GET['codicePercorso'];
 $db = DB::getInstance();
 
 $queryStr = "select P.codicePercorso,PP.codicePC,Pdc.latitudine,Pdc.longitudine ";
