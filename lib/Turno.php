@@ -36,6 +36,9 @@ class Turno {
 	public function getCodiceSquadra() {
 		return $this->codiceSquadra;
 	}
+	public function getPercorsi(){
+		return $this->percorsi;
+	}
 
 	/*
 	 * SETTER

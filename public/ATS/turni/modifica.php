@@ -4,8 +4,10 @@ require_once 'Turno.php';
 require_once 'Validator.php';
 require_once 'Redirect.php';
 require_once 'Squadra.php';
+require_once 'Percorso.php';
 
 $selected = 'selected="selected"';
+$checked = 'checked="checked"';
 $pageTitle = "Modifica Turno";
 
 $v = new Validator($_GET);
@@ -23,6 +25,8 @@ $clean = $v->getClean();
 $t = Turno::find_by_id($clean['codiceTurno']);
 $squadre = Squadra::findAll();
 
+$percorsiTurno = $t->getPercorsi();
+$tuttiPercorsi = Percorso::findAll();
 
 
 $modificaUrl = ACTION_URL . '/turno/modifica.php';
@@ -46,6 +50,20 @@ $modificaUrl = ACTION_URL . '/turno/modifica.php';
 			<?php endforeach; ?>
 		</select>
 	</p>
+	<fieldset id="percorsiWrapper">
+		<div id="labelPercorsi">
+	<?php foreach ($tuttiPercorsi as $p): ?>
+		<p><input name="codiciPercorsi[]"
+				  id="percorso<?php echo $p['codicePercorso']; ?>"
+				  type="checkbox"
+				  value="<?php echo $p['codicePercorso']; ?>"
+				  <?php if (in_array($p['codicePercorso'], $percorsiTurno)) echo $checked; ?> />
+			<label for="percorso<?php echo $p['codicePercorso']; ?>">Percorso <?php echo $p['codicePercorso']; ?></label></p>
+	<?php endforeach; ?>
+		</div>
+		<div id="map"></div>
+		<div id="panel"></div>
+	</fieldset>
 	<p>
 		<input id="submit" name="submit" type="submit" value="Aggiorna Turno" />
 		<input type="hidden" name="codiceTurno" value="<?php echo $t->getCodiceTurno(); ?>" />
@@ -53,6 +71,7 @@ $modificaUrl = ACTION_URL . '/turno/modifica.php';
 			</form>
 <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.4.4/jquery.min.js"></script>
 <script type="text/javascript" src="<?php echo BASE_URL; ?>/lib/jquery-ui-1.8.7.custom.min.js"></script>
-<script type="text/javascript" src="<?php echo PUBLIC_URL; ?>/js/caricaDatePicker.js"></script>
+<script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=true&language=it"></script>
+<script type="text/javascript" src="<?php echo PUBLIC_URL; ?>/js/turni/cercaPercorsiHover.js"></script>
 
 <?php include HELPERS_DIR . '/piepagina.php'; ?>
