@@ -53,9 +53,14 @@ class Turno {
 		$this->codiceSquadra = $codiceSquadra;
 	}
 
+	public function setPercorsi($arrayPercorsi) {
+		$this->percorsi = $arrayPercorsi;
+	}
+
 	/**
-	 *
-	 * @param type $id
+	 * Recupera il Turno con l'id specificato e con i percorsi associati
+	 * 
+	 * @param int $id
 	 * @return Turno L'oggetto turno relativo al codiceTurno dato
 	 * in ingresso
 	 */
@@ -68,6 +73,8 @@ class Turno {
 		try {
 			$out = $db->fetchFirst($queryStr);
 			$t = new Turno($out['data'], $out['codiceSquadra'], $out['codiceTurno']);
+			$percorsi = $t->recuperaPercorsi();
+			$t->setPercorsi($percorsi);
 			return $t;
 		} catch (DatabaseErrorException $exc) {
 			$msg = "<p>Errore! Non riesco a trovare il Turno.</p>";
@@ -86,7 +93,7 @@ class Turno {
 		$db = DB::getInstance();
 		$queryStr = "SELECT T.codiceTurno, S.nomeSquadra, T.data ";
 		$queryStr .= "FROM Turni T JOIN Squadre S ON (T.codiceSquadra = S.codiceSquadra) ";
-		$queryStr .= "ORDER BY T.data ASC";
+		$queryStr .= "ORDER BY T.data DESC";
 		try {
 			$result = $db->query($queryStr);
 			$out = array();
@@ -108,6 +115,9 @@ class Turno {
 		return $msg;
 	}
 
+	/**
+	 * Salva il turno nel DB
+	 */
 	public function save() {
 		$db = DB::getInstance();
 		/* Salvataggio Turno */
@@ -143,9 +153,9 @@ class Turno {
 		}
 	}
 
-	/* public function update() {
+	 public function update() {
 	  $db = DB::getInstance();
-	  $queryStr = "UPDATE " . self::$nomeTabella . " SET nome='" . $this->nome . "', cognome='" . $this->cognome . "' WHERE matricola=" . $this->matricola;
+	  $queryStr = "UPDATE " . self::$nomeTabella . " SET codiceSquadra='" . $this->getCodiceSquadra() . "', data='" . $this->getData(). "' WHERE codiceTurno=" . $this->getCodiceTurno();
 	  try {
 	  $db->query($queryStr);
 	  } catch (DatabaseErrorException $exc) {
@@ -155,8 +165,11 @@ class Turno {
 	  echo '<p>' . $exc->getTraceAsString() . '</p>';
 	  exit;
 	  }
-	  } */
+	  }
 
+	/**
+	 * Elimina il turno
+	 */
 	public function delete() {
 		$db = DB::getInstance();
 		$queryStr = "DELETE FROM " . self::$nomeTabella . " WHERE codiceTurno=" . $this->codiceTurno;
@@ -172,8 +185,22 @@ class Turno {
 		}
 	}
 
-	public function associaPercorsi($arrayPercorsi) {
-		$this->percorsi = $arrayPercorsi;
+	/**
+	 * Recupera i percorsi associati al turno
+	 * @return <type>
+	 */
+	public function recuperaPercorsi() {
+		$db = DB::getInstance();
+		$queryStr = "SELECT codicePercorso ";
+		$queryStr .= "FROM TURNO_PERCORSO ";
+		$queryStr .= "WHERE codiceTurno=$this->codiceTurno";
+
+		$result = $db->query($queryStr);
+		$out = array();
+		while ($row = $result->fetch_row()) {
+			$out[] = $row[0];
+		}
+		return $out;
 	}
 
 }

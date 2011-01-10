@@ -10,7 +10,6 @@ $pageTitle = "Modifica Sorvegliante";
 $modificaUrl = ACTION_URL . '/sorvegliante/modifica.php';
 $selected = 'selected="selected"';
 
-$squadre = Squadra::findAll();
 
 $v = new Validator($_GET);
 $v->isNotEmpty('matricola');
@@ -23,6 +22,7 @@ if (!empty($e)) {
 	$r->doRedirect();
 }
 
+$squadre = Squadra::findAll();
 $clean = $v->getClean();
 $clean['matricola'] = urldecode($clean['matricola']);
 $s = Sorvegliante::find_by_id($clean['matricola']);

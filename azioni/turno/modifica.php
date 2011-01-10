@@ -5,22 +5,28 @@ require_once 'Validator.php';
 require_once 'Redirect.php';
 
 $v = new Validator($_POST);
+$v->isNotEmpty('codiceTurno');
 $v->isNotEmpty('codiceSquadra');
 $v->isNotEmpty('data');
+
+$v->isNumeric('codiceTurno');
 $v->isNumeric('codiceSquadra');
 
+var_dump($v);
 $e = $v->getError();
 $clean = $v->getClean();
 if (empty($e)) {
 	$clean = $v->getClean();
 	//tutto ok
 	//recupera sorvegliante dal db
-	$s = Turno::find_by_id($clean['codiceTurno']);
+	$t = Turno::find_by_id($clean['codiceTurno']);
 	//aggiorna i suoi dati
-	$s->setData($clean['data']);
-	$s->setCodiceSquadra($clean['codiceSquadra']);
+	$t->setData($clean['data']);
+	$t->setCodiceSquadra($clean['codiceSquadra']);
+
+	var_dump($t);
 	//salvalo nel db
-	$s->update();
+	$t->update();
 	//redirect all'index dei sorveglianti
 	$r = new Redirect(PUBLIC_URL."/ATS/turni/");
 	$r->doRedirect();
