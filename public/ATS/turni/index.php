@@ -22,7 +22,7 @@ $tuttiITurni = Turno::findAll();
 			<td><?php echo $t['data']; ?></td>
 			<td><?php echo $codiceTurno; ?></td>
 			<td><?php echo $t['nomeSquadra']; ?></td>
-			<td><a href="<?php echo $codiceTurno; ?>">Visualizza turno</a></td>
+			<td><a href="dettagli.php?codiceTurno=<?php echo $codiceTurno; ?>">Visualizza turno</a></td>
 			<td><a href="modifica.php?codiceTurno=<?php echo $codiceTurno; ?>">Modifica</a></td>
 			<td><a href="elimina.php?codiceTurno=<?php echo $codiceTurno ?>">Elimina</a></td>
 		</tr>
