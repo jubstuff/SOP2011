@@ -53,10 +53,6 @@ $modificaUrl = ACTION_URL . '/turno/modifica.php';
 			</form>
 <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.4.4/jquery.min.js"></script>
 <script type="text/javascript" src="<?php echo BASE_URL; ?>/lib/jquery-ui-1.8.7.custom.min.js"></script>
-<script type="text/javascript">
-	$(document).ready(function(){
-		$("#data").datepicker({ dateFormat: 'yy-mm-dd' });
-	})
-</script>
+<script type="text/javascript" src="<?php echo PUBLIC_URL; ?>/js/caricaDatePicker.js"></script>
 
 <?php include HELPERS_DIR . '/piepagina.php'; ?>
