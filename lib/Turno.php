@@ -1,4 +1,5 @@
 <?php
+
 require_once 'config.php';
 require_once 'DB.php';
 require_once 'Redirect.php';
@@ -82,7 +83,7 @@ class Turno {
 			$t->setPercorsi($percorsi);
 			return $t;
 		} catch (DatabaseErrorException $exc) {
-			$r = new Redirect(PUBLIC_URL . 'error.php');
+			$r = new Redirect(PUBLIC_URL . '/error.php');
 			$r->doRedirect();
 		}
 	}
@@ -104,11 +105,13 @@ class Turno {
 			}
 			return $out;
 		} catch (DatabaseErrorException $exc) {
-			$msg = "<p>Errore! Non riesco a trovare i Turni.</p>";
-			$msg .= "<p>La query usata: " . $queryStr . "</p>";
-			echo $msg;
-			echo $exc->getTraceAsString();
-			exit;
+//			$msg = "<p>Errore! Non riesco a trovare i Turni.</p>";
+//			$msg .= "<p>La query usata: " . $queryStr . "</p>";
+//			echo $msg;
+//			echo $exc->getTraceAsString();
+//			exit;
+			$r = new Redirect(PUBLIC_URL . '/error.php');
+			$r->doRedirect();
 		}
 	}
 
@@ -126,11 +129,13 @@ class Turno {
 			}
 			return $out;
 		} catch (DatabaseErrorException $exc) {
-			$msg = "<p>Errore! Non riesco a trovare i Turni.</p>";
-			$msg .= "<p>La query usata: " . $queryStr . "</p>";
-			echo $msg;
-			echo $exc->getTraceAsString();
-			exit;
+//			$msg = "<p>Errore! Non riesco a trovare i Turni.</p>";
+//			$msg .= "<p>La query usata: " . $queryStr . "</p>";
+//			echo $msg;
+//			echo $exc->getTraceAsString();
+//			exit;
+			$r = new Redirect(PUBLIC_URL . '/error.php');
+			$r->doRedirect();
 		}
 	}
 
@@ -150,11 +155,13 @@ class Turno {
 		try {
 			$db->query($queryStr1);
 		} catch (DatabaseErrorException $exc) {
-			$msg = "<p>Errore! Non riesco a salvare il Turno.</p>";
-			$msg .= "<p>La query usate: " . $queryStr1 . "</p>";
-			echo $msg;
-			echo '<p>' . $exc->getTraceAsString() . '</p>';
-			exit;
+//			$msg = "<p>Errore! Non riesco a salvare il Turno.</p>";
+//			$msg .= "<p>La query usate: " . $queryStr1 . "</p>";
+//			echo $msg;
+//			echo '<p>' . $exc->getTraceAsString() . '</p>';
+//			exit;
+			$r = new Redirect(PUBLIC_URL . '/error.php');
+			$r->doRedirect();
 		}
 		/* salvataggio Turno_percorso */
 		$turnoID = $db->lastInsertId();
@@ -169,11 +176,13 @@ class Turno {
 		try {
 			$db->query($queryStr2);
 		} catch (DatabaseErrorException $exc) {
-			$msg = "<p>Errore! Non riesco a salvare il Turno.</p>";
-			$msg .= "<p>La query usata: " . $queryStr2 . "</p>";
-			echo $msg;
-			echo '<p>' . $exc->getTraceAsString() . '</p>';
-			exit;
+//			$msg = "<p>Errore! Non riesco a salvare il Turno.</p>";
+//			$msg .= "<p>La query usata: " . $queryStr2 . "</p>";
+//			echo $msg;
+//			echo '<p>' . $exc->getTraceAsString() . '</p>';
+//			exit;
+			$r = new Redirect(PUBLIC_URL . '/error.php');
+			$r->doRedirect();
 		}
 	}
 
@@ -183,11 +192,13 @@ class Turno {
 		try {
 			$db->query($queryStr);
 		} catch (DatabaseErrorException $exc) {
-			$msg = "<p>Errore! Non riesco a salvare il Turno.</p>";
-			$msg .= "<p>La query usata: " . $queryStr . "</p>";
-			echo $msg;
-			echo '<p>' . $exc->getTraceAsString() . '</p>';
-			exit;
+//			$msg = "<p>Errore! Non riesco a salvare il Turno.</p>";
+//			$msg .= "<p>La query usata: " . $queryStr . "</p>";
+//			echo $msg;
+//			echo '<p>' . $exc->getTraceAsString() . '</p>';
+//			exit;
+			$r = new Redirect(PUBLIC_URL . '/error.php');
+			$r->doRedirect();
 		}
 
 		$cancellati = array_diff($vecchiPercorsi, $this->getPercorsi());
@@ -197,26 +208,28 @@ class Turno {
 			try {
 				$db->query($queryDel);
 			} catch (DatabaseErrorException $exc) {
-				echo $queryDel;
+				$r = new Redirect(PUBLIC_URL . '/error.php');
+				$r->doRedirect();
 			}
 		}
 		$inseriti = array_diff($this->getPercorsi(), $vecchiPercorsi);
-		
+
 		if (!empty($inseriti)) {
 			$temp = array();
-			foreach($inseriti as $p) {
+			foreach ($inseriti as $p) {
 				$temp[] = "(" . $this->getCodiceTurno() . ", " . $p . ")";
 			}
 			$listaPercorsiNuovi = implode(',', $temp);
 
 
 			$queryIns = "INSERT INTO TURNO_PERCORSO(codiceTurno, codicePercorso) VALUES $listaPercorsiNuovi";
-			
+
 			try {
 				echo $queryIns;
 				$db->query($queryIns);
 			} catch (DatabaseErrorException $exc) {
-				echo $queryIns;
+				$r = new Redirect(PUBLIC_URL . '/error.php');
+				$r->doRedirect();
 			}
 		}
 	}
@@ -231,11 +244,13 @@ class Turno {
 		try {
 			$db->query($queryStr);
 		} catch (DatabaseErrorException $exc) {
-			$msg = "<p>Errore! Non riesco a cancellare il Turno.</p>";
-			$msg .= "<p>La query usata: " . $queryStr . "</p>";
-			echo $msg;
-			echo '<p>' . $exc->getTraceAsString() . '</p>';
-			exit;
+//			$msg = "<p>Errore! Non riesco a cancellare il Turno.</p>";
+//			$msg .= "<p>La query usata: " . $queryStr . "</p>";
+//			echo $msg;
+//			echo '<p>' . $exc->getTraceAsString() . '</p>';
+//			exit;
+			$r = new Redirect(PUBLIC_URL . '/error.php');
+			$r->doRedirect();
 		}
 	}
 
@@ -248,13 +263,22 @@ class Turno {
 		$queryStr = "SELECT codicePercorso ";
 		$queryStr .= "FROM TURNO_PERCORSO ";
 		$queryStr .= "WHERE codiceTurno=$this->codiceTurno";
-
-		$result = $db->query($queryStr);
-		$out = array();
-		while ($row = $result->fetch_row()) {
-			$out[] = $row[0];
+		try {
+			$result = $db->query($queryStr);
+			$out = array();
+			while ($row = $result->fetch_row()) {
+				$out[] = $row[0];
+			}
+			return $out;
+		} catch (DatabaseErrorException $exc) {
+//			$msg = "<p>Errore! Non riesco a cancellare il Turno.</p>";
+//			$msg .= "<p>La query usata: " . $queryStr . "</p>";
+//			echo $msg;
+//			echo '<p>' . $exc->getTraceAsString() . '</p>';
+//			exit;
+			$r = new Redirect(PUBLIC_URL . '/error.php');
+			$r->doRedirect();
 		}
-		return $out;
 	}
 
 }
