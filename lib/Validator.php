@@ -84,6 +84,19 @@ class Validator {
 		}
 	}
 
+	public function isArray($key, $msg='') {
+		if ( isset($this->rawRequest[$key]) && is_array($this->rawRequest[$key]) && !empty($this->rawRequest[$key]) ) {
+			$this->addClean($key, $this->rawRequest[$key]);
+			return TRUE;
+		} else {
+			if(!strlen($msg)) {
+				$msg = "Il campo $key deve essere un array non vuoto";
+			}
+			$this->addError($msg);
+			return FALSE;
+		}
+	}
+
 	public function isEqual($key, $value, $msg='') {
 		if(isset($this->rawRequest[$key]) && ($this->rawRequest[$key] == $value)) {
 			$this->addClean($key, $this->rawRequest[$key]);
