@@ -36,7 +36,8 @@ class Turno {
 	public function getCodiceSquadra() {
 		return $this->codiceSquadra;
 	}
-	public function getPercorsi(){
+
+	public function getPercorsi() {
 		return $this->percorsi;
 	}
 
@@ -178,19 +179,49 @@ class Turno {
 		}
 	}
 
-	 public function update() {
-	  $db = DB::getInstance();
-	  $queryStr = "UPDATE " . self::$nomeTabella . " SET codiceSquadra='" . $this->getCodiceSquadra() . "', data='" . $this->getData(). "' WHERE codiceTurno=" . $this->getCodiceTurno();
-	  try {
-	  $db->query($queryStr);
-	  } catch (DatabaseErrorException $exc) {
-	  $msg = "<p>Errore! Non riesco a salvare il Turno.</p>";
-	  $msg .= "<p>La query usata: " . $queryStr . "</p>";
-	  echo $msg;
-	  echo '<p>' . $exc->getTraceAsString() . '</p>';
-	  exit;
-	  }
-	  }
+	public function update($vecchiPercorsi) {
+		$db = DB::getInstance();
+		$queryStr = "UPDATE " . self::$nomeTabella . " SET codiceSquadra='" . $this->getCodiceSquadra() . "', data='" . $this->getData() . "' WHERE codiceTurno=" . $this->getCodiceTurno();
+		try {
+			$db->query($queryStr);
+		} catch (DatabaseErrorException $exc) {
+			$msg = "<p>Errore! Non riesco a salvare il Turno.</p>";
+			$msg .= "<p>La query usata: " . $queryStr . "</p>";
+			echo $msg;
+			echo '<p>' . $exc->getTraceAsString() . '</p>';
+			exit;
+		}
+
+		$cancellati = array_diff($vecchiPercorsi, $this->getPercorsi());
+		if (!empty($cancellati)) {
+			$cancellatiStr = implode(',', $cancellati);
+			$queryDel = "DELETE FROM TURNO_PERCORSO WHERE codiceTurno=" . $this->getCodiceTurno() . " AND codicePercorso IN ($cancellatiStr)";
+			try {
+				$db->query($queryDel);
+			} catch (DatabaseErrorException $exc) {
+				echo $queryDel;
+			}
+		}
+		$inseriti = array_diff($this->getPercorsi(), $vecchiPercorsi);
+		
+		if (!empty($inseriti)) {
+			$temp = array();
+			foreach($inseriti as $p) {
+				$temp[] = "(" . $this->getCodiceTurno() . ", " . $p . ")";
+			}
+			$listaPercorsiNuovi = implode(',', $temp);
+
+
+			$queryIns = "INSERT INTO TURNO_PERCORSO(codiceTurno, codicePercorso) VALUES $listaPercorsiNuovi";
+			
+			try {
+				echo $queryIns;
+				$db->query($queryIns);
+			} catch (DatabaseErrorException $exc) {
+				echo $queryIns;
+			}
+		}
+	}
 
 	/**
 	 * Elimina il turno

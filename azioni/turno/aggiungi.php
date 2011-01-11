@@ -9,7 +9,7 @@ require_once 'Redirect.php';
 $v = new Validator($_POST);
 $v->isNotEmpty('codiceSquadra');
 $v->isNotEmpty('data');
-$v->isNotEmpty('codiciPercorsi');
+//$v->isNotEmpty('codiciPercorsi');
 
 $v->isNumeric('codiceSquadra');
 

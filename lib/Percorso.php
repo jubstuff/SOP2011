@@ -8,7 +8,6 @@ require_once 'DB.php';
  * @author justb
  */
 
-require_once 'DB.php';
 class Percorso {
 
 	public static function find_by_turno($codiceTurno) {
@@ -27,7 +26,6 @@ class Percorso {
 
 	public static function findAll() {
 		$db = DB::getInstance();
-		//@todo questo dovrebbe stare nella classe Percorso
 		$queryStr = "SELECT codicePercorso from Percorsi ORDER BY codicePercorso";
 		try {
 			$result = $db->query($queryStr);
