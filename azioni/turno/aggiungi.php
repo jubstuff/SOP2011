@@ -9,7 +9,7 @@ require_once 'Redirect.php';
 $v = new Validator($_POST);
 $v->isNotEmpty('codiceSquadra');
 $v->isNotEmpty('data');
-//$v->isNotEmpty('codiciPercorsi');
+$v->isArray('codiciPercorsi');
 
 $v->isNumeric('codiceSquadra');
 
@@ -19,7 +19,7 @@ if (empty($e)) {
 	//tutto ok
 	$codiceTurno = ''; //il codiceTurno viene inserito automaticamente da MySql
 	$t = new Turno($clean['data'], $clean['codiceSquadra']);
-	$t->setPercorsi($_POST['codiciPercorsi']); //@todo validare i percorsi
+	$t->setPercorsi($clean['codiciPercorsi']);
 	$t->save();
 	$r = new Redirect(PUBLIC_URL . '/ATS/turni/');
 	$r->doRedirect();

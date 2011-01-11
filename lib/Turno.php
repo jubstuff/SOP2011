@@ -1,6 +1,7 @@
 <?php
-
-require 'DB.php';
+require_once 'config.php';
+require_once 'DB.php';
+require_once 'Redirect.php';
 
 /**
  * Description of Turno
@@ -81,11 +82,8 @@ class Turno {
 			$t->setPercorsi($percorsi);
 			return $t;
 		} catch (DatabaseErrorException $exc) {
-			$msg = "<p>Errore! Non riesco a trovare il Turno.</p>";
-			$msg .= "<p>La query usata: " . $queryStr . "</p>";
-			echo $msg;
-			echo '<p>' . $exc->getTraceAsString() . '</p>';
-			exit;
+			$r = new Redirect(PUBLIC_URL . 'error.php');
+			$r->doRedirect();
 		}
 	}
 
