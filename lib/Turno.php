@@ -94,9 +94,10 @@ class Turno {
 	 */
 	public static function findAll() {
 		$db = DB::getInstance();
-		$queryStr = "SELECT T.codiceTurno, S.nomeSquadra, T.data ";
+
+		$queryStr = "SELECT T.codiceTurno, S.nomeSquadra, DATE_FORMAT(T.data,'%e-%b-%Y') AS data ";
 		$queryStr .= "FROM Turni T JOIN Squadre S ON (T.codiceSquadra = S.codiceSquadra) ";
-		$queryStr .= "ORDER BY T.data DESC";
+		$queryStr .= "ORDER BY T.data ASC";
 		try {
 			$result = $db->query($queryStr);
 			$out = array();
@@ -117,7 +118,7 @@ class Turno {
 
 	public static function find_by_codice_squadra($codiceSquadra) {
 		$db = DB::getInstance();
-		$queryStr = "SELECT T.codiceTurno, S.nomeSquadra, T.data ";
+		$queryStr = "SELECT T.codiceTurno, S.nomeSquadra, DATE_FORMAT(T.data,'%e-%b-%Y') AS data ";
 		$queryStr .= "FROM Turni T JOIN Squadre S ON (T.codiceSquadra = S.codiceSquadra) ";
 		$queryStr .= "WHERE T.codiceSquadra=$codiceSquadra ";
 		$queryStr .= "ORDER BY T.data DESC";

@@ -51,7 +51,7 @@ while ($row = @mysql_fetch_assoc($result)) {
   // creo un attributo id per distinguere il percorso
   $dataNode->setAttribute('id', $count);
 
-  $pNode = $dom->createElement('percorso', $row['idPercorso']);
+  $pNode = $dom->createElement('percorso', 'percorso'.$row['idPercorso']);
   $dataNode->appendChild($pNode);
   $pdcNode = $dom->createElement('pdc', $row['idPDC']);
   $dataNode->appendChild($pdcNode);

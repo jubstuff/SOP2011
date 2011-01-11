@@ -28,7 +28,7 @@ $infoAssoc = array();
 
 foreach ($kml->document->data as $d) {
 //	var_dump($d);
-	$codP = (int)$d->percorso;
+	$codP = (string)$d->percorso;
 	$infoAssoc[$codP]['pdc'][] = array('indirizzo' => (string)$d->indirizzo, 'latitudine' => (float)$d->latitudine, 'longitudine' => (float)$d->longitudine);
 }
 
