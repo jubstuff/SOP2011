@@ -11,7 +11,7 @@ $checked = 'checked="checked"';
 $pageTitle = "Modifica Turno";
 
 $v = new Validator($_GET);
-//@todo fare decodeurl su matricola
+
 $v->isNotEmpty('codiceTurno');
 $v->isNumeric('codiceTurno');
 $e = $v->getError();
@@ -21,6 +21,7 @@ if (!empty($e)) {
 }
 
 $clean = $v->getClean();
+$clean['matricola'] = urldecode($clean['matricola']);
 $t = Turno::find_by_id($clean['codiceTurno']);
 $squadre = Squadra::findAll();
 

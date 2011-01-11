@@ -241,7 +241,6 @@ class Turno {
 	public function delete() {
 		$db = DB::getInstance();
 		$queryStr = "DELETE FROM " . self::$nomeTabella . " WHERE codiceTurno=" . $this->codiceTurno;
-		//@todo c'è bisogno di un cascade nella tabella turno_percorso
 		try {
 			$db->query($queryStr);
 		} catch (DatabaseErrorException $exc) {

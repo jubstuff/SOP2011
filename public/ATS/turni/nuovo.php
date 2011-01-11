@@ -3,6 +3,7 @@ session_start();
 require_once 'config.php';
 require_once 'DB.php';
 require_once 'Squadra.php';
+require_once 'Percorso.php';
 
 $pageTitle = "Aggiungi Turno";
 $aggiungiUrl = ACTION_URL . '/turno/aggiungi.php';
@@ -10,18 +11,7 @@ $checked = 'checked="checked"';
 $db = DB::getInstance();
 
 $squadre = Squadra::findAll();
-
-//@todo questo dovrebbe stare nella classe Percorso
-$queryStr = "SELECT codicePercorso from Percorsi ORDER BY codicePercorso";
-try {
-	$result = $db->query($queryStr);
-	$percorsi = array();
-	while ($row = $result->fetch_assoc()) {
-		$percorsi[] = $row;
-	}
-} catch (DatabaseErrorException $e) {
-	echo __FILE__ . "Impossibile eseguire la query";
-}
+$percorsi = Percorso::findAll();
 
 //il codice squadra di default è 1
 $default = array('data' => '', 'codiceTurno' => '', 'codiceSquadra' => 1, 'codicePercorso' => '');

@@ -9,14 +9,15 @@ $pageTitle = 'Elimina turno';
 $v = new Validator($_GET);
 $v->isNotEmpty('codiceTurno');
 $v->isNumeric('codiceTurno');
-//@todo fare decodeurl su matricola
 $e = $v->getError();
 if(!empty($e)){
 	$r = new Redirect(PUBLIC_URL . '/error.php');
 	$r->doRedirect();
 }
 
+
 $clean = $v->getClean();
+$clean['codiceTurno'] = urldecode($clean['codiceTurno']);
 $t = Turno::find_by_id($clean['codiceTurno']);
 $eliminaUrl = ACTION_URL . '/turno/elimina.php';
 ?>
