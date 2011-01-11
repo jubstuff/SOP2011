@@ -6,7 +6,9 @@
  *
  * @author just
  */
+require_once 'config.php';
 require_once 'DatabaseErrorException.php';
+require_once 'Redirect.php';
 
 class DB {
 
@@ -39,7 +41,8 @@ class DB {
 			try {
 				self::$instance = new self;
 			} catch (DatabaseErrorException $e) {
-				die($e->getMessage()); //TODO cosa dovrei fare qui?
+				$r = new Redirect(PUBLIC_URL . '/error.php');
+				$r->doRedirect();
 			}
 		}
 		return self::$instance;

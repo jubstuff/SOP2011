@@ -33,9 +33,7 @@ if (empty($e)) {
 	$r->doRedirect();
 } else {
 	//errori - possibile intrusione?
-	//@todo creare la pagina di errore generale
-
-	$r = new Redirect('error.php');
+	$r = new Redirect(PUBLIC_URL . '/error.php');
 	$r->doRedirect();
 }
 ?>

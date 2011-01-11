@@ -1,14 +1,3 @@
-/**
- * Crea il div che conterrà la mappa
- */
-function creaDivMappa() {
-    //creo il div che conterrà la mappa
-    var mapdiv = document.createElement('div');
-    mapdiv.setAttribute("id", "map");
-    document.body.appendChild(mapdiv);
-    return mapdiv;
-}
-
 $(document).ready(function(){
     //var mapDiv = creaDivMappa();
     var mapDiv = document.getElementById('map');
@@ -36,23 +25,10 @@ $(document).ready(function(){
     }
 	
     //@todo aggiungere rimozione degli elementi di un percorso
-//    $("#percorso > li").live('click',function(){
-//        alert("cliccato su un elemento del percorso");
-//    });
+
     
     /* richiesta AJAX */
-    function onSuccess(json) {
-        var response = parseInt(json.response,10);
-        if(isNaN(response)) {
-            alert("Creazione fallita!");
-            alert(json.query);
-        } else if(response==1) {
-            $("#info").show().fadeOut(1800);
-            setTimeout(function(){window.location='index.php'}, 1500);
-        }
-    }
     $('#salvaPercorso').submit(function(event){
-        //console.log(percorso);
         event.preventDefault();
         $.ajax({
             url: $(this).attr('action'),
@@ -64,6 +40,17 @@ $(document).ready(function(){
             dataType : 'json'
         });
     });
+
+	function onSuccess(json) {
+        var response = parseInt(json.response,10);
+        if(isNaN(response)) {
+            alert("Creazione fallita!");
+            alert(json.query);
+        } else if(response==1) {
+            $("#info").show().fadeOut(1800);
+            setTimeout(function(){window.location='index.php'}, 1500);
+        }
+    }
     /* FINE richiesta AJAX */
 
     $("#luoghi").change(function(event){
@@ -78,16 +65,11 @@ $(document).ready(function(){
         var pDC = {
             'codicePC' : Number(pDCInfo[2])
         };
-        console.log(pDC);
+        
         storico.push(new google.maps.LatLng(lat, lng));
         percorso.push(pDC);
 		
         var marker = creaMarker(selected, lat, lng);
-		
-        //		console.info("Testo selected");
-        //		console.log(textCurrent);
-        //		console.info("Valore selected");
-        //		console.log(valueCurrent);
 		
         //visualizzo la tabella con il percorso
         var row = $("<tr>").appendTo("#percorso tbody");
@@ -111,10 +93,7 @@ $(document).ready(function(){
                     location: storico[i]
                 });
             }
-			
-            //			console.info("I punti intermedi");
-            //			console.log(wps);
-			
+
             request = {
                 origin: storico[0],
                 destination: storico[storico.length-1],
@@ -136,8 +115,6 @@ $(document).ready(function(){
         });
 		
         selected.remove();
-		
-    //		console.info("Lo storico fino ad ora");
-    //		console.log(storico);
+
     });
 })

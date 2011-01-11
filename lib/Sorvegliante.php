@@ -128,10 +128,9 @@ class Sorvegliante {
 	}
 
 	public function save() {
-		//@todo validare i dati 
 		$db = DB::getInstance();
 		$queryStr = "INSERT INTO " . self::$nomeTabella;
-		$queryStr .= "(nome, cognome, password, codiceSquadra) VALUES ('$this->nome', '$this->cognome', SHA1('$this->password'), $this->codiceSquadra)"; //@todo ricordarsi di modificare SHA1
+		$queryStr .= "(nome, cognome, password, codiceSquadra) VALUES ('$this->nome', '$this->cognome', SHA1('$this->password'), $this->codiceSquadra)";
 		try {
 			$db->query($queryStr);
 		} catch (DatabaseErrorException $exc) {

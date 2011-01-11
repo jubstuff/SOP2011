@@ -16,8 +16,7 @@ $v->isNotEmpty('codiceTurno');
 $v->isNumeric('codiceTurno');
 $e = $v->getError();
 if (!empty($e)) {
-	//@todo creare la pagina di errore generale
-	$r = new Redirect('error.php');
+	$r = new Redirect(PUBLIC_URL . '/error.php');
 	$r->doRedirect();
 }
 
@@ -28,12 +27,11 @@ $squadre = Squadra::findAll();
 $percorsiTurno = $t->getPercorsi();
 $tuttiPercorsi = Percorso::findAll();
 
-
 $modificaUrl = ACTION_URL . '/turno/modifica.php';
 ?>
 <?php include HELPERS_DIR . '/testata.php'; ?>
 <h1><?php echo $pageTitle; ?></h1>
-<form action="<?php echo $modificaUrl; ?>" method="post">
+<form id="modificaTurno" action="<?php echo $modificaUrl; ?>" method="post">
 	<p>
 		<label for="data">Data</label>
 		<input id="data" name="data" type="text" value="<?php echo $t->getData(); ?>" />
@@ -56,6 +54,7 @@ $modificaUrl = ACTION_URL . '/turno/modifica.php';
 		<p><input name="codiciPercorsi[]"
 				  id="percorso<?php echo $p['codicePercorso']; ?>"
 				  type="checkbox"
+				  class="checkboxPercorso"
 				  value="<?php echo $p['codicePercorso']; ?>"
 				  <?php if (in_array($p['codicePercorso'], $percorsiTurno)) echo $checked; ?> />
 			<label for="percorso<?php echo $p['codicePercorso']; ?>">Percorso <?php echo $p['codicePercorso']; ?></label></p>

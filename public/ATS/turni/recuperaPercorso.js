@@ -1,4 +1,4 @@
-$.getJSON('percorso.json.php', { //@todo utilizzare la funzione $.ajax
+$.getJSON('percorso.json.php', {
 			'codicePercorso':codicePercorso
 		},function(markers){
 			var puntiIntermedi = creaPuntiIntermedi(markers);

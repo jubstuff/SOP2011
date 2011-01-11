@@ -68,6 +68,7 @@ if (isset($_SESSION['errors'])) {
 		<p><input name="codiciPercorsi[]"
 				  id="percorso<?php echo $p['codicePercorso']; ?>"
 				  type="checkbox"
+				  class="checkboxPercorso"
 				  value="<?php echo $p['codicePercorso']; ?>"
 				  <?php if ($default['codicePercorso'] == $p['codicePercorso']) echo $checked; ?> />
 			<label for="percorso<?php echo $p['codicePercorso']; ?>">Percorso <?php echo $p['codicePercorso']; ?></label></p>
@@ -84,4 +85,5 @@ if (isset($_SESSION['errors'])) {
 <script type="text/javascript" src="<?php echo BASE_URL; ?>/lib/jquery-ui-1.8.7.custom.min.js"></script>
 <script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=true&language=it"></script>
 <script type="text/javascript" src="<?php echo PUBLIC_URL; ?>/js/turni/cercaPercorsiHover.js"></script>
+
 <?php include HELPERS_DIR . '/piepagina.php'; ?>

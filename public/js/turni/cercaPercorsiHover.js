@@ -1,23 +1,18 @@
 $(document).ready(function(){
+if(typeof datepicker === 'function'){
+
 	$("#data").datepicker({
 		dateFormat: 'yy-mm-dd'
 	});
-		var mapDiv = document.getElementById('map');
+}
+
+	var mapDiv = document.getElementById('map');
 	var panelDiv = document.getElementById('panel');
 	var map = initialize(mapDiv);
 	var directionsDisplay = new google.maps.DirectionsRenderer();
 	var directionsService = new google.maps.DirectionsService();
 
-	$("#percorsiWrapper p").hover(function(){
-		//impedisce al link di essere attivato normalmente
-		//recupera il codice del percorso
-		$(this).css('background-color','#FFFF66');
-		var codicePercorso = $(this).children(":checkbox").first().val();
-		$.getJSON('percorso.json.php', {
-			'codicePercorso':codicePercorso
-		}, recuperaPercorso);
-		return false;
-	},
+	$("#percorsiWrapper p").hover(effettuaRichiesta,
 	function(){
 		$(this).css('background-color','#FFF');
 	});
@@ -33,6 +28,16 @@ $(document).ready(function(){
 			mapTypeId: google.maps.MapTypeId.ROADMAP
 		};
 		return new google.maps.Map(mapDiv, myOptions);
+	}
+
+	function effettuaRichiesta(){
+		//recupera il codice del percorso
+		$(this).css('background-color','#FFFF66');
+		var codicePercorso = $(this).children(".checkboxPercorso").first().val();
+		$.getJSON('percorso.json.php', {
+			'codicePercorso':codicePercorso
+		}, recuperaPercorso);
+		return false;
 	}
 	/**
 	 * recuperaPercorso
@@ -90,7 +95,4 @@ $(document).ready(function(){
 		}
 		return puntiIntermedi;
 	}
-
-
-
 });
