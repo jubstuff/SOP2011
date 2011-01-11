@@ -166,12 +166,12 @@ class Turno {
 		/* salvataggio Turno_percorso */
 		$turnoID = $db->lastInsertId();
 
-		$queryStr2 = "INSERT INTO TURNO_PERCORSO(codiceTurno, codicePercorso) VALUES ";
-		$len = count($this->percorsi);
-		for ($i = 0; $i < $len - 1; $i++) {
-			$queryStr2 .= "($turnoID, " . $this->percorsi[$i] . "), ";
+		$temp = array();
+		foreach($this->percorsi as $p) {
+			$temp[] = "(" . $turnoID . ", " . $p . ")";
 		}
-		$queryStr2 .= "($turnoID," . $this->percorsi[$i++] . ")";
+		$listaPercorsiNuovi = implode(',', $temp);
+		$queryStr2 = "INSERT INTO TURNO_PERCORSO(codiceTurno, codicePercorso) VALUES $listaPercorsiNuovi";
 
 		try {
 			$db->query($queryStr2);
