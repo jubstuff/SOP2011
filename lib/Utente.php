@@ -21,16 +21,17 @@ class Utente {
 		}
 	}
 
-	public static function getInfo($username){
+	public static function getInfo($userId){
 		$db = DB::getInstance();
-		$queryStr = "SELECT * FROM Credenziali WHERE nomeUtente='$username'";
+		$cleanUserId = $db->escape($userId);
+		$queryStr = "SELECT userId, nomeUtente, password, ruolo FROM Utenti WHERE userId=$cleanUserId";
 		return $db->fetchFirst($queryStr); //@todo validare query
 	}
 
-	public static function isValid($username, $password) {
+	public static function processLogin($username, $password) {
 		$utente = self::getInfo($username);
 
-		$userID = $utente['nomeUtente'];
+		$userID = $utente['userId'];
 		$passwordCriptata = $utente['password'];
 		if(sha1($password) != $passwordCriptata) {
 			return false;

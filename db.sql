@@ -107,7 +107,7 @@ CREATE TABLE PERCORSO_PDC
 
 INSERT INTO Ruoli(tipo) VALUES('ASC');
 INSERT INTO Ruoli(tipo) VALUES('ATS');
-INSERT INTO Ruoli(tipo) VALUES('Sorvegliante');
+INSERT INTO Ruoli(tipo) VALUES('SOR');
 	
 INSERT INTO Squadre(nomeSquadra) VALUES('default');
 INSERT INTO Squadre(nomeSquadra) VALUES('alfa');
@@ -132,3 +132,6 @@ INSERT INTO PuntiDiControllo(indirizzo, latitudine, longitudine, idTag, codiceCl
 INSERT INTO PuntiDiControllo(indirizzo, latitudine, longitudine, idTag, codiceCliente) VALUES('Via lava 5 Sant\'Antimo Napoli', 40.943952, 14.238581, 1, 1);
 INSERT INTO PuntiDiControllo(indirizzo, latitudine, longitudine, idTag, codiceCliente) VALUES('Via Trieste e Trento 54 Sant\'Antimo Napoli', 40.943126, 14.235665, 1, 1);
 INSERT INTO PuntiDiControllo(indirizzo, latitudine, longitudine, idTag, codiceCliente) VALUES('seconda traversa coste di agnano 21, pozzuoli NA', 40.830276, 14.135016, 1, 1);
+
+
+INSERT INTO Utenti(nomeUtente,password,ruolo) VALUES('amministratore1', SHA1('qwerty'), 1);

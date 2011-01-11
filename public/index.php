@@ -11,7 +11,7 @@ $pageTitle = "Sistema Informativo SOP 2011";
 	<li><a href="ATS/">Amministrare turni e percorsi</a></li>
 	<li><a href="Sorvegliante/">[Sorvegliante] Visualizzare i miei turni e percorsi</a></li>
 </ul>-->
-
+<?php //@todo aggiungere visualizzazione errori ?>
 	<form action="<?php echo ACTION_URL; ?>/utente/login.php" method="post">
 		<p>
 			<label for="username">Username</label>
