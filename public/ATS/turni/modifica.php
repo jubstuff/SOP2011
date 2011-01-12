@@ -26,7 +26,7 @@ $clean['codiceTurno'] = urldecode($clean['codiceTurno']);
 $t = Turno::find_by_id($clean['codiceTurno']);
 $squadre = Squadra::findAll();
 
-//valido la richiesta POST in caso di errore nel form
+//visualizzo gli errori nella richiesta POST in caso di errori nel form
 $default = array('data' => $t->getData(), 'codiciPercorsi' => array(), 'codiceSquadra' => $t->getCodiceSquadra());
 if (isset($_SESSION['errors'])) {
 	$errors = $_SESSION['errors'];

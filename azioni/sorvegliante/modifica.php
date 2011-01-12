@@ -1,5 +1,5 @@
 <?php
-
+session_start();
 require_once 'config.php';
 require_once 'Sorvegliante.php';
 require_once 'Validator.php';
@@ -17,10 +17,9 @@ $v->isAlnum('cognome');
 $v->isNumeric('codiceSquadra');
 
 $e = $v->getError();
+$clean = $v->getClean();
 
-if (empty($e)) {
-	$clean = $v->getClean();
-	
+if (empty($e)) {	
 	//tutto ok
 	//recupera sorvegliante dal db
 	$s = Sorvegliante::find_by_id($clean['matricola']);
@@ -36,7 +35,9 @@ if (empty($e)) {
 	$r->doRedirect();
 } else {
 	//errori - possibile intrusione?
-	$r = new Redirect(PUBLIC_URL . '/error.php');
+	$_SESSION['clean'] = $clean;
+	$_SESSION['errors'] = $e;
+	$r = new Redirect(PUBLIC_URL . '/ASC/sorveglianti/modifica.php?matricola='.$clean['matricola']);
 	$r->doRedirect();
 }
 ?>

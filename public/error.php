@@ -8,6 +8,7 @@ $pageTitle = "Errore | Sistema Informativo SOP 2011";
 <?php
 if(isset($_SESSION['error'])) {
 	var_dump($_SESSION['error']);
+	unset($_SESSION['error']);
 }
 ?>
 <p>Siamo spiacenti ma si è verificato un problema tecnico con il sistema.</p>
