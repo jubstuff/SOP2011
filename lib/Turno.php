@@ -83,6 +83,7 @@ class Turno {
 			$t->setPercorsi($percorsi);
 			return $t;
 		} catch (DatabaseErrorException $exc) {
+			$_SESSION['error'] = 'Impossibile trovare il turno';
 			$r = new Redirect(PUBLIC_URL . '/error.php');
 			$r->doRedirect();
 		}
@@ -111,6 +112,7 @@ class Turno {
 //			echo $msg;
 //			echo $exc->getTraceAsString();
 //			exit;
+			$_SESSION['error'] = 'Impossibile trovare turni';
 			$r = new Redirect(PUBLIC_URL . '/error.php');
 			$r->doRedirect();
 		}
@@ -135,6 +137,7 @@ class Turno {
 //			echo $msg;
 //			echo $exc->getTraceAsString();
 //			exit;
+			$_SESSION['error'] = 'Impossibile trovare turni associati alla squadra';
 			$r = new Redirect(PUBLIC_URL . '/error.php');
 			$r->doRedirect();
 		}
@@ -161,6 +164,7 @@ class Turno {
 //			echo $msg;
 //			echo '<p>' . $exc->getTraceAsString() . '</p>';
 //			exit;
+			$_SESSION['error'] = 'Impossibile inserire il nuovo turno';
 			$r = new Redirect(PUBLIC_URL . '/error.php');
 			$r->doRedirect();
 		}
@@ -182,6 +186,7 @@ class Turno {
 //			echo $msg;
 //			echo '<p>' . $exc->getTraceAsString() . '</p>';
 //			exit;
+			$_SESSION['error'] = 'Impossibile inserire i percorsi per il nuovo turno';
 			$r = new Redirect(PUBLIC_URL . '/error.php');
 			$r->doRedirect();
 		}
@@ -198,6 +203,7 @@ class Turno {
 //			echo $msg;
 //			echo '<p>' . $exc->getTraceAsString() . '</p>';
 //			exit;
+			$_SESSION['error'] = 'Impossibile aggiornare la tabella Turni';
 			$r = new Redirect(PUBLIC_URL . '/error.php');
 			$r->doRedirect();
 		}
@@ -209,6 +215,7 @@ class Turno {
 			try {
 				$db->query($queryDel);
 			} catch (DatabaseErrorException $exc) {
+				$_SESSION['error'] = 'Impossibile cancellare i vecchi percorsi del turno';
 				$r = new Redirect(PUBLIC_URL . '/error.php');
 				$r->doRedirect();
 			}
@@ -229,6 +236,7 @@ class Turno {
 				echo $queryIns;
 				$db->query($queryIns);
 			} catch (DatabaseErrorException $exc) {
+				$_SESSION['error'] = 'Impossibile inserire i nuovi percorsi per il turno';
 				$r = new Redirect(PUBLIC_URL . '/error.php');
 				$r->doRedirect();
 			}
@@ -249,6 +257,7 @@ class Turno {
 //			echo $msg;
 //			echo '<p>' . $exc->getTraceAsString() . '</p>';
 //			exit;
+			$_SESSION['error'] = 'Impossibile cancellare il turno';
 			$r = new Redirect(PUBLIC_URL . '/error.php');
 			$r->doRedirect();
 		}
@@ -276,6 +285,7 @@ class Turno {
 //			echo $msg;
 //			echo '<p>' . $exc->getTraceAsString() . '</p>';
 //			exit;
+			$_SESSION['error'] = 'Impossibile recuperare i percorsi associati al turno';
 			$r = new Redirect(PUBLIC_URL . '/error.php');
 			$r->doRedirect();
 		}

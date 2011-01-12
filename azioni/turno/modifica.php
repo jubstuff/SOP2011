@@ -29,13 +29,15 @@ if (empty($e)) {
 	$t->setCodiceSquadra($clean['codiceSquadra']);
 	$t->setPercorsi($nuoviPercorsi);
 	//salvalo nel db
-//	$t->update($vecchiPercorsi);
-//	//redirect all'index dei sorveglianti
-//	$r = new Redirect(PUBLIC_URL."/ATS/turni/");
-//	$r->doRedirect();
+	$t->update($vecchiPercorsi);
+	//redirect all'index dei sorveglianti
+	$r = new Redirect(PUBLIC_URL."/ATS/turni/");
+	$r->doRedirect();
 } else {
-	//errori - possibile intrusione?
-//	$r = new Redirect(PUBLIC_URL . '/error.php');
-//	$r->doRedirect();
+	//ci sono errori - redirigere al form
+	$_SESSION['clean'] = $clean;
+	$_SESSION['errors'] = $e;
+	$r = new Redirect(PUBLIC_URL . '/ATS/turni/modifica.php?codiceTurno='.$clean['codiceTurno']);
+	$r->doRedirect();
 }
 ?>

@@ -1,4 +1,5 @@
 <?php
+session_start();
 require_once 'config.php';
 require_once 'Turno.php';
 require_once 'Validator.php';
@@ -11,19 +12,32 @@ $checked = 'checked="checked"';
 $pageTitle = "Modifica Turno";
 
 $v = new Validator($_GET);
-
+//valido la richiesta GET
 $v->isNotEmpty('codiceTurno');
 $v->isNumeric('codiceTurno');
 $e = $v->getError();
 if (!empty($e)) {
+	$_SESSION['error'] = 'Codice turno errato';
 	$r = new Redirect(PUBLIC_URL . '/error.php');
 	$r->doRedirect();
 }
-
 $clean = $v->getClean();
 $clean['codiceTurno'] = urldecode($clean['codiceTurno']);
 $t = Turno::find_by_id($clean['codiceTurno']);
 $squadre = Squadra::findAll();
+
+//valido la richiesta POST in caso di errore nel form
+$default = array('data' => $t->getData(), 'codiciPercorsi' => array(), 'codiceSquadra' => $t->getCodiceSquadra());
+if (isset($_SESSION['errors'])) {
+	$errors = $_SESSION['errors'];
+	$cleans = $_SESSION['clean'];
+
+	$default = array_merge($default, $cleans);
+
+	unset($_SESSION['errors']);
+	unset($_SESSION['clean']);
+}
+
 
 $percorsiTurno = $t->getPercorsi();
 $tuttiPercorsi = Percorso::findAll();
@@ -33,17 +47,24 @@ $modificaUrl = ACTION_URL . '/turno/modifica.php';
 <?php include HELPERS_DIR . '/testata.php'; ?>
 <h1><?php echo $pageTitle; ?></h1>
 <p><a href="../turni/">Indietro</a></p>
+<?php if (isset($errors)) : ?>
+	<ul class="errorList">
+	<?php foreach ($errors as $error) : ?>
+		<li><?php echo $error; ?></li>
+	<?php endforeach; ?>
+	</ul>
+<?php endif; ?>
 <form id="modificaTurno" action="<?php echo $modificaUrl; ?>" method="post">
 	<p>
 		<label for="data">Data</label>
-		<input id="data" name="data" type="text" value="<?php echo $t->getData(); ?>" />
+		<input id="data" name="data" type="text" value="<?php echo $default['data']; ?>" />
 	</p>
 	<p>
 		<label for="codiceSquadra">Squadra</label>
 		<select id="codiceSquadra" name="codiceSquadra">
 			<?php foreach ($squadre as $sq) : ?>
 				<option value="<?php echo $sq['codiceSquadra']; ?>"
-			<?php if ($t->getCodiceSquadra() == $sq['codiceSquadra'])
+			<?php if ($default['codiceSquadra'] == $sq['codiceSquadra'])
 					echo $selected; ?>>
 						<?php echo $sq['nomeSquadra']; ?>
 			</option>
