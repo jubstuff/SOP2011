@@ -5,7 +5,7 @@ $pageTitle = "Carica file percorsi";
 
 <?php include HELPERS_DIR . '/testata.php'; ?>
 
-<form action="salvaXML.php" method="post">
+<form action="salvaXML.php" method="post" enctype="multipart/form-data" >
     <p>
         <label>Seleziona il file da processare:</label>
         <input id="id_file" name="turno" type="file" />
