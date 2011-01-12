@@ -16,7 +16,7 @@ $v->isNumeric('codiceTurno');
 
 $e = $v->getError();
 if (!empty($e)) {
-	$r = new Redirect(PUBLIC_URL . 'error.php');
+	$r = new Redirect(PUBLIC_URL . '/error.php');
 	$r->doRedirect();
 }
 

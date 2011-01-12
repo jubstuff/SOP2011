@@ -1,6 +1,7 @@
 <?php
 
 require_once 'DB.php';
+require_once 'Redirect.php';
 
 /**
  * Description of Sorvegliante
@@ -95,7 +96,8 @@ class Sorvegliante {
 //			echo $msg;
 //			echo '<p>' . $exc->getTraceAsString() . '</p>';
 //			exit;
-			return '';
+			$r = new Redirect(PUBLIC_URL . '/error.php');
+			$r->doRedirect();
 		}
 	}
 

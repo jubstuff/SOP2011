@@ -9,7 +9,7 @@ require_once 'Redirect.php';
 $v = new Validator($_POST);
 $v->isNotEmpty('codiceSquadra');
 $v->isNotEmpty('data');
-$v->isArray('codiciPercorsi');
+$v->isArray('codiciPercorsi','Bisogna scegliere almeno un percorso da aggiungere al turno');
 
 $v->isNumeric('codiceSquadra');
 

@@ -1,4 +1,5 @@
 <?php
+session_start();
 require_once 'config.php';
 require_once 'Turno.php';
 require_once 'Validator.php';
@@ -8,6 +9,7 @@ $v = new Validator($_POST);
 $v->isNotEmpty('codiceTurno');
 $v->isNotEmpty('codiceSquadra');
 $v->isNotEmpty('data');
+
 $v->isArray('codiciPercorsi');
 
 $v->isNumeric('codiceTurno');
@@ -27,13 +29,13 @@ if (empty($e)) {
 	$t->setCodiceSquadra($clean['codiceSquadra']);
 	$t->setPercorsi($nuoviPercorsi);
 	//salvalo nel db
-	$t->update($vecchiPercorsi);
-	//redirect all'index dei sorveglianti
-	$r = new Redirect(PUBLIC_URL."/ATS/turni/");
-	$r->doRedirect();
+//	$t->update($vecchiPercorsi);
+//	//redirect all'index dei sorveglianti
+//	$r = new Redirect(PUBLIC_URL."/ATS/turni/");
+//	$r->doRedirect();
 } else {
 	//errori - possibile intrusione?
-	$r = new Redirect(PUBLIC_URL . '/error.php');
-	$r->doRedirect();
+//	$r = new Redirect(PUBLIC_URL . '/error.php');
+//	$r->doRedirect();
 }
 ?>

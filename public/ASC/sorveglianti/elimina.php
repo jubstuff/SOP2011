@@ -20,11 +20,7 @@ if(!empty($e)){
 $clean = $v->getClean();
 $clean['matricola'] = urldecode($clean['matricola']);
 $s = Sorvegliante::find_by_id($clean['matricola']);
-if(empty($s)) {
-	//se non esiste un sorvegliante con quella matricola
-	$r = new Redirect(PUBLIC_URL . '/error.php');
-	$r->doRedirect();
-}
+
 $eliminaUrl = ACTION_URL . '/sorvegliante/elimina.php';
 ?>
 <?php include HELPERS_DIR . '/testata.php'; ?>

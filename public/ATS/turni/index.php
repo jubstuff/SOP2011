@@ -7,7 +7,7 @@ $tuttiITurni = Turno::findAll();
 <?php include HELPERS_DIR . '/testata.php'; ?>
 <h1><?php echo $pageTitle ?></h1>
 <p><a href="nuovo.php">Nuovo turno</a></p>
-<?php if (is_array($tuttiITurni)) : ?>
+<?php if ( is_array($tuttiITurni) && !empty($tuttiITurni)) : ?>
 	<table>
 		<tr>
 			<th>Data</th>
@@ -16,7 +16,7 @@ $tuttiITurni = Turno::findAll();
 		</tr>
 	<?php
 	foreach ($tuttiITurni as $t) :
-		$codiceTurno = $t['codiceTurno'];
+		$codiceTurno = urlencode($t['codiceTurno']);
 	?>
 		<tr>
 			<td><?php echo $t['data']; ?></td>

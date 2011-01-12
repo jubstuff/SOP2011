@@ -31,38 +31,39 @@ if (isset($_SESSION['errors'])) {
 
 <?php if (isset($e)) : ?>
 	<ul class="errorList">
-<?php foreach ($e as $error) : ?>
-			<li><?php echo $error; ?></li>
-<?php endforeach; ?>
+	<?php foreach ($e as $error) : ?>
+		<li><?php echo $error; ?></li>
+	<?php endforeach; ?>
 	</ul>
 <?php endif; ?>
-
-	<form id="nuovoTurno" action="<?php echo $aggiungiUrl; ?>" method="post">
-			<p>
-				<label for="data">Data</label>
-				<input id="data" name="data" type="text" value="<?php echo $default['data']; ?>" />
-			</p>
-			<p>
-				<label for="codiceSquadra">Squadra</label>
-				<select id="codiceSquadra" name="codiceSquadra">
-<?php foreach ($squadre as $s) : ?>
-						<option value="<?php echo $s['codiceSquadra']; ?>"
-<?php if ($default['codiceSquadra'] == $s['codiceSquadra'])
-				echo $checked; ?>><?php echo $s['nomeSquadra']; ?></option>
-					<?php endforeach; ?>
+<p><a href="../turni/">Indietro</a></p>
+<form id="nuovoTurno" action="<?php echo $aggiungiUrl; ?>" method="post">
+	<p>
+		<label for="data">Data</label>
+		<input id="data" name="data" type="text" value="<?php echo $default['data']; ?>" />
+	</p>
+	<p>
+		<label for="codiceSquadra">Squadra</label>
+		<select id="codiceSquadra" name="codiceSquadra">
+		<?php foreach ($squadre as $s) : ?>
+			<option value="<?php echo $s['codiceSquadra']; ?>"
+			<?php if ($default['codiceSquadra'] == $s['codiceSquadra'])
+			echo $checked; ?>><?php echo $s['nomeSquadra']; ?></option>
+		<?php endforeach; ?>
 		</select>
 	</p>
 	<fieldset id="percorsiWrapper">
 		<div id="labelPercorsi">
-	<?php foreach ($percorsi as $p): ?>
-		<p><input name="codiciPercorsi[]"
-				  id="percorso<?php echo $p['codicePercorso']; ?>"
-				  type="checkbox"
-				  class="checkboxPercorso"
-				  value="<?php echo $p['codicePercorso']; ?>"
-				  <?php if ($default['codicePercorso'] == $p['codicePercorso']) echo $checked; ?> />
-			<label for="percorso<?php echo $p['codicePercorso']; ?>">Percorso <?php echo $p['codicePercorso']; ?></label></p>
-	<?php endforeach; ?>
+			<?php foreach ($percorsi as $p): ?>
+						<p><input name="codiciPercorsi[]"
+								  id="percorso<?php echo $p['codicePercorso']; ?>"
+								  type="checkbox"
+								  class="checkboxPercorso"
+								  value="<?php echo $p['codicePercorso']; ?>"
+					  <?php if ($default['codicePercorso'] == $p['codicePercorso'])
+							echo $checked; ?> />
+  				<label for="percorso<?php echo $p['codicePercorso']; ?>">Percorso <?php echo $p['codicePercorso']; ?></label></p>
+			<?php endforeach; ?>
 		</div>
 		<div id="map"></div>
 		<div id="panel"></div>
@@ -71,10 +72,10 @@ if (isset($_SESSION['errors'])) {
 		<input id="submit" name="submit" type="submit" value="Salva Turno" />
 	</p>
 </form>
-<p><a href="../turni/">Indietro</a></p>
+			
 <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.4.4/jquery.min.js"></script>
 <script type="text/javascript" src="<?php echo BASE_URL; ?>/lib/jquery-ui-1.8.7.custom.min.js"></script>
 <script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=true&language=it"></script>
-<script type="text/javascript" src="<?php echo PUBLIC_URL; ?>/js/turni/cercaPercorsiHover.js"></script>
+<script type="text/javascript" src="<?php echo PUBLIC_URL; ?>/js/turni/recuperaPercorsoHover.js"></script>
 
 <?php include HELPERS_DIR . '/piepagina.php'; ?>
