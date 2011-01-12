@@ -1,22 +1,53 @@
 <?php
-
 require_once 'config.php';
-
-$pageTitle = "Estrai indirizzi";
+require_once 'Redirect.php';
 ?>
 
 <?php
 
 //include 'percorsiKMLfile.php';
-$kml = simplexml_load_file('percorsiKMLfile.php');
+//$kml = simplexml_load_file('percorsiKMLfile.php');
+$turno = simplexml_load_file('turno.xml');
 
-$info = $kml->document;
+
 
 /* Recupero dati KML */
 $infoAssoc = array();
+$count = 0;
+
+foreach ($turno as $percorso) {
+	$percorsoID = (int) $percorso['id'];
+	$infoAssoc[$count]['percorso'] = $percorsoID;
+	$infoAssoc[$count]['pdc'] = array();
+
+	foreach ($percorso as $pdc) {
+		$indirizzo = (string) $pdc->indirizzo;
+		$latitudine = (float) $pdc->latitudine;
+		$longitudine = (float) $pdc->longitudine;
+
+		$punto = array('indirizzo' => $indirizzo,
+			'latitudine' => $latitudine,
+			'longitudine' => $longitudine
+		);
+		$infoAssoc[$count]['pdc'][] = $punto;
+	}
+//	echo '<p>Punti di controllo del percorso ' . $percorsoID . '</p>';
+//	var_dump($infoAssoc[$count]['pdc']);
+	$count++;
+}
+
+
+$filename = 'turno' . $turno['id'] . '.json';
+$fp = fopen($filename, 'w');
+fwrite($fp, json_encode($infoAssoc));
+fclose($fp);
+$r = new Redirect(PUBLIC_URL . '/ATS');
+$r->doRedirect();
+
+//var_dump($infoAssoc);
+
 //var_dump($doc_kml);
 //header("Content-type: application/json");
-
 //echo '<p>Informazioni recuperate dal kml</p>';
 //for ($i = 0; $kml->document->data[$i]->percorso != ''; $i++) {
 //  $infoAssoc['percorso'][$i] = $kml->document->data[$i]->percorso;
@@ -25,15 +56,12 @@ $infoAssoc = array();
 //  $infoAssoc['longitudine'][$i] = $kml->document->data[$i]->longitudine;
 //
 //}
-
-foreach ($kml->document->data as $d) {
-//	var_dump($d);
-	$codP = (string)$d->percorso;
-	$infoAssoc[$codP]['pdc'][] = array('indirizzo' => (string)$d->indirizzo, 'latitudine' => (float)$d->latitudine, 'longitudine' => (float)$d->longitudine);
-}
-
+//foreach ($kml->document->data as $d) {
+////	var_dump($d);
+//	$codP = (string)$d->percorso;
+//	$infoAssoc[$codP]['pdc'][] = array('indirizzo' => (string)$d->indirizzo, 'latitudine' => (float)$d->latitudine, 'longitudine' => (float)$d->longitudine);
+//}
 //print_r($infoAssoc);
-
 //$lunghezza = count($infoAssoc['percorso']);
 //echo 'lunghezza: ' . $lunghezza . '<br /><br />';
 /*
@@ -45,7 +73,7 @@ foreach ($kml->document->data as $d) {
 
   }
  */
-echo json_encode($infoAssoc);
+//echo json_encode($infoAssoc);
 //
 //
 //

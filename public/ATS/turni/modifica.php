@@ -21,7 +21,7 @@ if (!empty($e)) {
 }
 
 $clean = $v->getClean();
-$clean['matricola'] = urldecode($clean['matricola']);
+$clean['codiceTurno'] = urldecode($clean['codiceTurno']);
 $t = Turno::find_by_id($clean['codiceTurno']);
 $squadre = Squadra::findAll();
 

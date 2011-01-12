@@ -1,10 +1,9 @@
 $(document).ready(function(){
-if(typeof datepicker === 'function'){
 
 	$("#data").datepicker({
 		dateFormat: 'yy-mm-dd'
+	
 	});
-}
 
 	var mapDiv = document.getElementById('map');
 	var panelDiv = document.getElementById('panel');
@@ -13,9 +12,9 @@ if(typeof datepicker === 'function'){
 	var directionsService = new google.maps.DirectionsService();
 
 	$("#percorsiWrapper p").hover(effettuaRichiesta,
-	function(){
-		$(this).css('background-color','#FFF');
-	});
+		function(){
+			$(this).css('background-color','#FFF');
+		});
 
 	/**
      * Inizializza una mappa centrata su Napoli

@@ -3,9 +3,9 @@
 /* Connessione al database */
 
 $dbHost = 'localhost';
-$dbUser = 'Pkml2011_admin';
-$dbPassword = 'z0m1x9n2';
-$dbName = 'Percorsikml2011';
+$dbUser = 'root';
+$dbPassword = 'q1p0w2o9';
+$dbName = 'PercorsiKML2011';
 
 // credenziali di accesso
 $connection = @mysql_connect($dbHost, $dbUser, $dbPassword);
@@ -15,9 +15,9 @@ if (!$connection) {
 }
 
 // seleziono il database
-$dbSelected = @mysql_select_db($dbName);
+$dbSelected = mysql_select_db($dbName);
 
-if (!dbSelected) {
+if (!$dbSelected) {
     die('Can\'t use db: ' . mysql_error());
 }
 
@@ -31,6 +31,8 @@ if (!$result) {
 
 /* Creazione del documento */
 $dom = new DOMDocument('1.0', 'UTF-8');
+$dom->preserveWhiteSpace = false;
+$dom->formatOutput = true;
 
 // creo l'elemento kml e gli aggiungo il namespace
 $node = $dom->createElementNS('http://earth.google.com/kml/2.1', 'kml');
@@ -45,7 +47,7 @@ $count = 0;
 while ($row = @mysql_fetch_assoc($result)) {
   $count++;
   // creo l'elemento percorso e lo aggiungo al documento
-  $node = $dom->createElement('data');
+  $node = $dom->createElement('PlaceMark');
   $dataNode = $docNode->appendChild($node);
 
   // creo un attributo id per distinguere il percorso
@@ -64,8 +66,9 @@ while ($row = @mysql_fetch_assoc($result)) {
 }
 
 /* generazione file kml */
-$kmlOutput = $dom->saveXml();
-header('Content-type: application/vnd.google-earth.kml+xml');
-echo $kmlOutput;
+//$kmlOutput = $dom->saveXML();
+//echo $kmlOutput;
+//header('Content-type: application/vnd.google-earth.kml+xml');
 
+$dom->save('percorsi.kml')
 ?>

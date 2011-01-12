@@ -1,46 +1,45 @@
 <?php
 require_once 'config.php';
-require_once 'Sorvegliante.php';
-$pageTitle = "Estrai indirizzi";
-$tuttiISorveglianti = Sorvegliante::findAll();
+require_once 'Redirect.php';
 ?>
-
-<?php include HELPERS_DIR . '/testata.php'; ?>
 
 <?php
 
 //include 'percorsiKMLfile.php';
+//$kml = simplexml_load_file('percorsiKMLfile.php');
+$turno = simplexml_load_file('turno.xml');
 
-$kml = simplexml_load_file('percorsiKMLfile.php');
-$info = $kml->document;
-//var_dump($doc_kml);
 
-$strInizio = '[';
-$strFine = ']';
-$strJSON .= $strInizio;
 
-for($i = 0; $info->data[$i]->percorso != '' ; $i++) {
-    $a = $info->data[$i]->percorso;
-    echo $a . " | ";
-    $b = $info->data[$i]->pdc;
-    echo $b . " | ";
-    $c = $info->data[$i]->indirizzo;
-    echo $c . " | ";
-    $d = $info->data[$i]->latitudine;
-    echo $d . " | ";
-    $e = $info->data[$i]->longitudine;
-    echo $e . "<br />";
+/* Recupero dati KML */
+$infoAssoc = array();
+$count = 0;
 
-    // genero il file JSON
-    $strJSON .= '{"indirizzoP' .$a . '":"' . $c . '","latitudine":"' . $d . '","longitudine":"' . $e . '"},';
+foreach ($turno as $percorso) {
+	$percorsoID = (int) $percorso['id'];
+	$infoAssoc[$count]['percorso'] = $percorsoID;
+	$infoAssoc[$count]['pdc'] = array();
+
+	foreach ($percorso as $pdc) {
+		$indirizzo = (string) $pdc->indirizzo;
+		$latitudine = (float) $pdc->latitudine;
+		$longitudine = (float) $pdc->longitudine;
+
+		$punto = array('indirizzo' => $indirizzo,
+			'latitudine' => $latitudine,
+			'longitudine' => $longitudine
+		);
+		$infoAssoc[$count]['pdc'][] = $punto;
+	}
+//	echo '<p>Punti di controllo del percorso ' . $percorsoID . '</p>';
+//	var_dump($infoAssoc[$count]['pdc']);
+	$count++;
 }
 
-//$strJSON .= $strFine;
 
-$fp = fopen("indirizzi.json", "w+");
-fwrite($fp, $strJSON);
-fseek($fp, -1, SEEK_END);
-fwrite($fp, $strFine);
+$filename = 'turno' . $turno['id'] . '.json';
+$fp = fopen($filename, 'w');
+fwrite($fp, json_encode($infoAssoc));
 fclose($fp);
-
-?>
+$r = new Redirect(PUBLIC_URL . '/ATS');
+$r->doRedirect();
