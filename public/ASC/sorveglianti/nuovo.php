@@ -1,5 +1,5 @@
 <?php
-session_start();
+require_once 'autenticazione.php';
 require_once 'config.php';
 require_once 'DB.php';
 require_once 'Squadra.php';

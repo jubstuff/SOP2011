@@ -14,10 +14,11 @@ CREATE TABLE Ruoli
 CREATE TABLE Utenti
 (
 	userId INTEGER AUTO_INCREMENT PRIMARY KEY,
-	nomeUtente VARCHAR(50) NOT NULL UNIQUE,
+	nomeUtente VARCHAR(50) NOT NULL,
 	password VARCHAR(40) NOT NULL,
 	ruolo INTEGER,
-	CONSTRAINT Credenziali_fk1 FOREIGN KEY (ruolo) REFERENCES Ruoli(codiceRuolo)
+	CONSTRAINT Credenziali_fk1 FOREIGN KEY (ruolo) REFERENCES Ruoli(codiceRuolo),
+	CONSTRAINT Unico_nomeUtente_ruolo UNIQUE(nomeUtente, ruolo)
 ) ENGINE = InnoDB;
 	
 CREATE TABLE Squadre

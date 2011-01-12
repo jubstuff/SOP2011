@@ -10,4 +10,12 @@
    </head>
 	<body>
 		<div id="wrapper">
+
 		<p><a href="<?php echo PUBLIC_URL; ?>">Home</a></p>
+		<?php
+		require_once 'Utente.php';
+		if(Utente::isAuthenticated()):
+			?>
+		<p><?php echo Utente::getCurrentUserId(); ?> - <a href="<?php echo ACTION_URL . '/utente/logout.php' ?>">Logout</a> </p>
+
+		<?php endif; ?>

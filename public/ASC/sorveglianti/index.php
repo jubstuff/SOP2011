@@ -1,4 +1,5 @@
 <?php
+require_once 'autenticazione.php';
 require_once 'config.php';
 require_once 'Sorvegliante.php';
 $pageTitle = "Amministra Sorveglianti";

@@ -1,4 +1,6 @@
 <?php require_once 'config.php';
+require_once 'autenticazione.php';
+
 $pageTitle = "Amministrazione turni e percorsi"; ?>
 <?php include HELPERS_DIR . '/testata.php'; ?>
 <h1><?php echo $pageTitle ?></h1>
