@@ -19,10 +19,15 @@ if (!empty($e)) {
 	$r = new Redirect(PUBLIC_URL . '/error.php');
 	$r->doRedirect();
 }
-
 $clean = $v->getClean();
 $clean['matricola'] = urldecode($clean['matricola']);
+
 $s = Sorvegliante::find_by_id($clean['matricola']);
+if(empty($s)) {
+	//se non esiste un sorvegliante con quella matricola
+	$r = new Redirect(PUBLIC_URL . '/error.php');
+	$r->doRedirect();
+}
 $squadra = Squadra::find_by_id($s->getCodiceSquadra());
 ?>
 <?php include HELPERS_DIR . '/testata.php'; ?>

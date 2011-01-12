@@ -90,11 +90,12 @@ class Sorvegliante {
 								 $out['password'], $out['codiceSquadra']);
 			return $s;
 		} catch (DatabaseErrorException $exc) {
-			$msg = "<p>Errore! Non riesco a trovare il Sorvegliante.</p>";
-			$msg .= "<p>La query usata: " . $queryStr . "</p>";
-			echo $msg;
-			echo '<p>' . $exc->getTraceAsString() . '</p>';
-			exit;
+//			$msg = "<p>Errore! Non riesco a trovare il Sorvegliante.</p>";
+//			$msg .= "<p>La query usata: " . $queryStr . "</p>";
+//			echo $msg;
+//			echo '<p>' . $exc->getTraceAsString() . '</p>';
+//			exit;
+			return '';
 		}
 	}
 
