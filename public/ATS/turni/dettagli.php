@@ -47,7 +47,7 @@ $myPercorsi = Percorso::find_by_turno($clean['codiceTurno']);
 
 	<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.4.4/jquery.min.js"></script>
 	<script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=true&language=it"></script>
-<script type="text/javascript" src="<?php echo PUBLIC_URL; ?>/ATS/percorsi/recuperaPercorso.js"></script>
+	<script type="text/javascript" src="<?php echo PUBLIC_URL; ?>/js/turni/visualizzaPercorsiDettagli.js"></script>
 <p><a href="../turni/">Indietro</a></p>
 
 <?php include HELPERS_DIR . '/piepagina.php'; ?>

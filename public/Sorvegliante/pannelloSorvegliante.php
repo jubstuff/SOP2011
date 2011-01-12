@@ -34,6 +34,7 @@ try {
     echo __FILE__ . "Impossibile eseguire la query";
 }
 
+$pageTitle = 'Pannello Sorveglianti';
 ?>
 <?php include HELPERS_DIR . '/testata.php'; ?>
 <h1><?php echo $sorvegliante->getCognome().' '. $sorvegliante->getNome(); ?></h1>
@@ -52,7 +53,7 @@ try {
     <tr>
         <td><?php echo $mt['data']; ?></td>
         <td><?php echo $codiceTurno; ?></td>
-        <td><a href="dettagli.php?codiceTurno=<?php echo $codiceTurno; ?>">Visualizza turno</a></td>
+        <td><a href="dettagliTurno.php?codiceTurno=<?php echo $codiceTurno; ?>">Visualizza turno</a></td>
     </tr>
         <?php
         endforeach;
