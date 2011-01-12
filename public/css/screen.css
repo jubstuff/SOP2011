@@ -275,7 +275,7 @@ NOSTRE REGOLE CSS
     width:960px;
 }
 
-#map{
+#map, #map-assegnati, #map-effettuati{
     float:left;
     height: 500px;
     background-color:#CCC;

@@ -22,24 +22,32 @@ if (!empty($e)) {
 
 $clean = $v->getClean();
 $clean['codiceTurno'] = urldecode($clean['codiceTurno']);
+
 $t = Turno::find_by_id($clean['codiceTurno']);
 $squadra = Squadra::find_by_id($t->getCodiceSquadra());
+$myPercorsi = Percorso::find_by_turno($clean['codiceTurno']);
 ?>
 <?php include HELPERS_DIR . '/testata.php'; ?>
 <h1><?php echo $pageTitle; ?></h1>
 <ul>
-	<?php var_dump($t); ?>
-	<?php var_dump($squadra); ?>
+    <li><?php echo 'Data: '.$t->getData(); ?></li>
+    <li><?php echo 'Squadra: '.$squadra['nomeSquadra']; ?></li>
 </ul>
-<ul id="percorsiWrapper">
-	<?php foreach ($t->getPercorsi() as $p) : ?>
-		<li><?php echo $p; ?></li>
+<?php if (is_array($myPercorsi) && !empty ($myPercorsi)) : ?>
+<ul id="elencoPercorsi">
+        <?php foreach ($myPercorsi as $numPercorso): ?>
+    <li><a href="<?php echo $numPercorso; ?>">Percorso <?php echo $numPercorso; ?></a></li>
 	<?php endforeach; ?>
 	</ul>
 <div id="map"></div>
 <div id="panel"></div>
-	<p><a href="../turni/">Indietro</a></p>
+<?php else : ?>
+<p>Non ci sono percorsi associati al turno</p>
+<?php endif; ?>
+
 	<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.4.4/jquery.min.js"></script>
 	<script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=true&language=it"></script>
-	<script type="text/javascript" src="<?php echo PUBLIC_URL; ?>/js/turni/cercaPercorsiHover.js"></script>
+<script type="text/javascript" src="<?php echo PUBLIC_URL; ?>/ATS/percorsi/recuperaPercorso.js"></script>
+<p><a href="../turni/">Indietro</a></p>
+
 <?php include HELPERS_DIR . '/piepagina.php'; ?>

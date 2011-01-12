@@ -52,6 +52,7 @@ $aggiungiUrl = ACTION_URL . '/percorso/aggiungi.php';
 		</div>
 	</div>	
 	<div id="map"></div>
+        <p><a href="../percorsi/">Indietro</a></p>
 	<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.4.4/jquery.min.js"></script>
 	<script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=true"></script>
 	<script type="text/javascript" src="<?php echo BASE_URL; ?>/lib/common.js"></script>

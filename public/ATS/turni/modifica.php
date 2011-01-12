@@ -69,6 +69,7 @@ $modificaUrl = ACTION_URL . '/turno/modifica.php';
 		<input type="hidden" name="codiceTurno" value="<?php echo $t->getCodiceTurno(); ?>" />
 	</p>
 			</form>
+<p><a href="../turni/">Indietro</a></p>
 <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.4.4/jquery.min.js"></script>
 <script type="text/javascript" src="<?php echo BASE_URL; ?>/lib/jquery-ui-1.8.7.custom.min.js"></script>
 <script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=true&language=it"></script>

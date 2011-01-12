@@ -3,12 +3,12 @@
 
 	<percorso id="1">
 		<pdc id="1">
-			<indirizzo>via umbria napoli</indirizzo>
+			<indirizzo>ciccioli</indirizzo>
 			<latitudine>40.89354</latitudine>
 			<longitudine>14.258068</longitudine>
 		</pdc>
 		<pdc id="2">
-			<indirizzo>via toledo napoli</indirizzo>
+
 			<latitudine>40.845509</latitudine>
 			<longitudine>14.249201</longitudine>
 		</pdc>

@@ -55,4 +55,5 @@ $s = Sorvegliante::find_by_id($clean['matricola']);
 					<input type="hidden" name="matricola" value="<?php echo $s->getMatricola(); ?>" />
 				</p>
 			</form>
+<p><a href="../sorveglianti/">Indietro</a></p>
 <?php include HELPERS_DIR . '/piepagina.php'; ?>
