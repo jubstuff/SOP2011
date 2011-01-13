@@ -1,19 +1,10 @@
 <?php
 require_once 'config.php';
 require_once 'DB.php';
+require_once 'PuntoDiControllo.php';
 $pageTitle = "Inserisci nuovo percorso";
 
-$db = DB::getInstance();
-
-/*
- * Recupera tutti i punti di controllo
- */
-$queryStr = "SELECT codicePC, indirizzo, latitudine, longitudine FROM PuntiDiControllo";
-$result = $db->query($queryStr);
-$pdc = array();
-while ($row = $result->fetch_assoc()) {
-	$pdc[] = $row;
-}
+$pdc = PuntoDiControllo::findAll();
 
 $aggiungiUrl = ACTION_URL . '/percorso/aggiungi.php';
 ?>
@@ -28,7 +19,7 @@ $aggiungiUrl = ACTION_URL . '/percorso/aggiungi.php';
 		<select id="luoghi" size="10">
 			<?php foreach ($pdc as $luogo): ?>
 				<option value="<?php echo $luogo['latitudine'] . ',' . $luogo['longitudine'] . ',' . $luogo['codicePC']; ?>"><?php
-				echo trim($luogo['indirizzo']);
+				echo trim(ucwords($luogo['nomeCliente'])." - ".ucwords($luogo['indirizzo']));
 			?></option>
 			<?php endforeach; ?>
 			</select>
@@ -52,9 +43,8 @@ $aggiungiUrl = ACTION_URL . '/percorso/aggiungi.php';
 		</div>
 	</div>	
 	<div id="map"></div>
-        <p><a href="../percorsi/">Indietro</a></p>
 	<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.4.4/jquery.min.js"></script>
 	<script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=true"></script>
-	<script type="text/javascript" src="<?php echo BASE_URL; ?>/lib/common.js"></script>
 	<script type="text/javascript" src="<?php echo PUBLIC_URL; ?>/js/percorsi/creaPercorso.js"></script>
+        <p><a href="../percorsi/">Indietro</a></p>
 <?php include HELPERS_DIR . '/piepagina.php'; ?>
