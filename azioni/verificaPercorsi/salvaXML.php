@@ -1,6 +1,8 @@
 <?php
+//@todo questo file dovrebbe stare in azioni
 require_once 'config.php';
 require_once 'Redirect.php';
+//@todo fare una validazione più stretta
 if( isset($_FILES['turno']) && ($_FILES['turno']['error'] == UPLOAD_ERR_OK) ){
 	$tmpPath = ROOT_DIR . '/tmp/' . basename($_FILES['turno']['name']);
 	$result = move_uploaded_file($_FILES['turno']['tmp_name'], $tmpPath);
@@ -11,7 +13,6 @@ if( isset($_FILES['turno']) && ($_FILES['turno']['error'] == UPLOAD_ERR_OK) ){
 	echo 'invalid file uploaded';
 }
 
-//@todo validare il file XML
 $turno = simplexml_load_file($tmpPath);
 $codiceTurno = $turno['id'];
 $filename = 'turno' . $codiceTurno . '.xml';
