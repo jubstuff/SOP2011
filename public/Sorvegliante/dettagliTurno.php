@@ -1,4 +1,5 @@
 <?php
+require_once 'autenticazioneSOR.php';
 require_once 'config.php';
 require_once 'Turno.php';
 require_once 'Validator.php';
