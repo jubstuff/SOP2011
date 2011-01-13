@@ -33,7 +33,7 @@ $(document).ready(function(){
 		//recupera il codice del percorso
 		$(this).css('background-color','#FFFF66');
 		var codicePercorso = $(this).children(".checkboxPercorso").first().val();
-		$.getJSON('percorso.json.php', {
+		$.getJSON('../../../lib/percorso.json.php', {
 			'codicePercorso':codicePercorso
 		}, recuperaPercorso);
 		return false;

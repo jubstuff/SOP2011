@@ -1,5 +1,4 @@
 $(document).ready(function(){
-	//var mapDiv = creaDivMappa();
 	var mapDiv = document.getElementById('map');
 	var map = initialize(mapDiv);
 	var count=1;
@@ -40,15 +39,20 @@ $(document).ready(function(){
 	/* richiesta AJAX */
 	$('#salvaPercorso').submit(function(event){
 		event.preventDefault();
-		$.ajax({
-			url: $(this).attr('action'),
-			type : 'POST',
-			success : onSuccess,
-			data : {
-				p:percorso
-			},
-			dataType : 'json'
-		});
+		var rowNum = $('#percorso tbody tr').length;
+		if(rowNum > 1) {
+			$.ajax({
+				url: $(this).attr('action'),
+				type : 'POST',
+				success : onSuccess,
+				data : {
+					p:percorso
+				},
+				dataType : 'json'
+			});
+		} else {
+			alert('Ci devono essere almeno 2 PDC');
+		}
 	});
 
 	function onSuccess(json) {
@@ -60,7 +64,7 @@ $(document).ready(function(){
 			$("#info").show().fadeOut(1800);
 			setTimeout(function(){
 				window.location='index.php'
-				}, 1500);
+			}, 1500);
 		}
 	}
 	/* FINE richiesta AJAX */

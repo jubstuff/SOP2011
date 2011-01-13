@@ -42,7 +42,7 @@ $(document).ready(function(){
 			richiesta[chiave] = valore;
 		}
 
-		$.getJSON('percorso.json.php', {
+		$.getJSON('../../../lib/percorso.json.php', {
 			'codicePercorso':richiesta['codicePercorso']
 		}, function(rispostaJSON){
 			var puntiIntermedi = creaPuntiIntermedi(rispostaJSON);

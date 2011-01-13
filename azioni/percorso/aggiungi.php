@@ -49,7 +49,5 @@ if (empty($e)) {
 		$risposta['query'] = $queryStr2;
 	}
 	echo json_encode($risposta);
-} else {
-	//ci sono errori - redirigere al form
 }
 ?>

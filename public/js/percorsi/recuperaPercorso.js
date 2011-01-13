@@ -10,7 +10,7 @@ $(document).ready(function(){
 		event.preventDefault();
 		//recupera il codice del percorso
 		var codicePercorso = $(this).attr('href');
-		$.getJSON('percorso.json.php', {
+		$.getJSON('../../../lib/percorso.json.php', {
 			'codicePercorso':codicePercorso
 		}, recuperaPercorso);
 		return false;
