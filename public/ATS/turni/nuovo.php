@@ -7,6 +7,7 @@ require_once 'Percorso.php';
 
 $pageTitle = "Aggiungi Turno";
 $aggiungiUrl = ACTION_URL . '/turno/aggiungi.php';
+$selected = 'selected="selected"';
 $checked = 'checked="checked"';
 $db = DB::getInstance();
 
@@ -48,7 +49,7 @@ if (isset($_SESSION['errors'])) {
 		<?php foreach ($squadre as $s) : ?>
 			<option value="<?php echo $s['codiceSquadra']; ?>"
 			<?php if ($default['codiceSquadra'] == $s['codiceSquadra'])
-			echo $checked; ?>><?php echo $s['nomeSquadra']; ?></option>
+			echo $selected; ?>><?php echo $s['nomeSquadra']; ?></option>
 		<?php endforeach; ?>
 		</select>
 	</p>
