@@ -6,13 +6,14 @@ require_once 'Redirect.php';
 require_once 'Squadra.php';
 require_once 'Percorso.php';
 
-//@todo aggiungere percorso.json.php
 $pageTitle = "Dettaglio Turno";
 
 $v = new Validator($_GET);
 
 $v->isNotEmpty('codiceTurno');
+$v->isNotEmpty('matricola');
 $v->isNumeric('codiceTurno');
+$v->isNumeric('matricola');
 
 $e = $v->getError();
 if (!empty($e)) {
@@ -29,6 +30,8 @@ $myPercorsi = Percorso::find_by_turno($clean['codiceTurno']);
 ?>
 <?php include HELPERS_DIR . '/testata.php'; ?>
 <h1><?php echo $pageTitle; ?></h1>
+<p><a href="#" onclick="window.print();return false;">Stampa</a> - 
+<a href="../Sorvegliante/pannelloSorvegliante.php?matricola=<?php echo $clean['matricola']; ?>">Indietro</a></p>
 <ul>
     <li><?php echo 'Data: '.$t->getData(); ?></li>
     <li><?php echo 'Squadra: '.$squadra['nomeSquadra']; ?></li>
@@ -47,7 +50,7 @@ $myPercorsi = Percorso::find_by_turno($clean['codiceTurno']);
 
 	<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.4.4/jquery.min.js"></script>
 	<script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=true&language=it"></script>
-	<script type="text/javascript" src="<?php echo PUBLIC_URL; ?>/js/turni/visualizzaPercorsiDettagli.js"></script>
-<p><a href="../turni/">Indietro</a></p>
+	<script type="text/javascript" src="<?php echo PUBLIC_URL; ?>/js/sorveglianti/visualizzaPercorsiDettagli.js"></script>
+
 
 <?php include HELPERS_DIR . '/piepagina.php'; ?>

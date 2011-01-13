@@ -17,12 +17,12 @@ if (!empty($e)) {
 
 $clean = $v->getClean();
 $clean['matricola'] = urldecode($clean['matricola']);
-$sorvegliante = Sorvegliante::find_by_id($clean['matricola']);
+$s = Sorvegliante::find_by_id($clean['matricola']);
 
 $db = DB::getInstance();
 $queryStr = "SELECT data, codiceTurno ";
 $queryStr .= "FROM Turni T JOIN Sorveglianti S ON(T.codiceSquadra = S.codiceSquadra) ";
-$queryStr .= "WHERE S.matricola=".$sorvegliante->getMatricola();
+$queryStr .= "WHERE S.matricola=".$s->getMatricola();
 
 try {
     $result = $db->query($queryStr);
@@ -37,8 +37,8 @@ try {
 $pageTitle = 'Pannello Sorveglianti';
 ?>
 <?php include HELPERS_DIR . '/testata.php'; ?>
-<h1><?php echo $sorvegliante->getCognome().' '. $sorvegliante->getNome(); ?></h1>
-<h5><?php echo 'Matricola: '. $sorvegliante->getMatricola();?></h5>
+<h1><?php echo $s->getCognome().' '. $s->getNome(); ?></h1>
+<h5><?php echo 'Matricola: '. $s->getMatricola();?></h5>
 
 <?php if (is_array($myTurni)) : ?>
 <table>
@@ -53,7 +53,7 @@ $pageTitle = 'Pannello Sorveglianti';
     <tr>
         <td><?php echo $mt['data']; ?></td>
         <td><?php echo $codiceTurno; ?></td>
-        <td><a href="dettagliTurno.php?codiceTurno=<?php echo $codiceTurno; ?>">Visualizza turno</a></td>
+        <td><a href="dettagliTurno.php?codiceTurno=<?php echo $codiceTurno; ?>&matricola=<?php echo $s->getMatricola(); ?>">Visualizza turno</a></td>
     </tr>
         <?php
         endforeach;
